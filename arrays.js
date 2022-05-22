@@ -119,7 +119,7 @@ function diagonalSums(matrix) {
             colIndex++;
         }
     colIndex = matrix.length - 1;
-    arrafor (let rowIndex = 0; rowIndex < matrix.length; rowIndex++) {
+    for (let rowIndex = 0; rowIndex < matrix.length; rowIndex++) {
         secondary += matrix[rowIndex][colIndex];
         colIndex--;
     }
