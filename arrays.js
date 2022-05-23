@@ -1,4 +1,40 @@
 
+//9. Magic Matrices
+
+function magicMatrices(matrix) {
+    let magical = true;
+    let sum = 0;
+    for (let colIndex = 0; colIndex < matrix[0].length; colIndex++) {
+        sum += matrix[0][colIndex];
+    }
+    let rowIndex = 1;
+    while (magical == true && rowIndex < matrix.length) {
+        let currentSum = 0;
+        for (let colIndex = 0; colIndex < matrix[rowIndex].length; colIndex++) {
+            currentSum += matrix[rowIndex][colIndex];
+        }
+        if (currentSum != sum) {
+            magical = false;
+        }
+        rowIndex++;
+    }
+    let colIndex = 0;
+    while (magical == true && colIndex < matrix[0].length) {
+        let currentSum = 0;
+        for (let rowIndex = 0; rowIndex < matrix.length; rowIndex++) {
+            currentSum += matrix[rowIndex][colIndex];
+        }
+        if (currentSum != sum) {
+            magical = false;
+        }
+        colIndex++;
+    }
+    return magical;
+};
+
+console.log(magicMatrices([[3, 0, 0], [0, 1, 2], [0, 2, 1]]));
+console.log(magicMatrices([[11, 32, 45], [21, 0, 1], [21, 1, 1]]));
+console.log(magicMatrices([[1, 0, 0], [0, 0, 1], [0, 1, 0]]));
 
 //8 Sort an Array by 2 Criteria
 function sortArray(array) {
