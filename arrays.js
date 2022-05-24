@@ -1,69 +1,103 @@
+//11. Diagonal Attack
+
+function diagonalAttack(array) {
+    let sum1 = 0;
+    let sum2 = 0;
+    let k = array.length - 1;
+    let matrix = [];
+    for (let i = 0; i < array.length; i++) {
+        let j = i;
+        let row = array[i].split(' ').map(x => Number(x));
+        sum1 += row[j];
+        sum2 += row[k];
+        k--;
+        matrix.push(row);
+    }
+    k = matrix.length - 1;
+    if (sum1 == sum2) {
+        for (let i = 0; i < matrix.length; i++) {
+            for (let j = 0; j < matrix[0].length; j++ )
+            if (i != j && j != k) {
+                matrix[i][j] = sum1;
+            }
+            k--;
+        }
+
+    }
+    for (let i = 0; i < matrix.length; i++){
+        console.log(matrix[i].join(' '));
+    } 
+}
+
+diagonalAttack(['5 3 12 3 1', '11 4 23 2 5', '101 12 3 21 10', '1 4 5 2 2', '5 22 33 11 1']);
+
+
 //10 Tic-tac-Toe
 
-function TicTacToe(moves){
-    let matrix = 
-        [[false, false, false],
-        [false, false, false],
-        [false, false, false]];
+// function TicTacToe(moves){
+//     let matrix = 
+//         [[false, false, false],
+//         [false, false, false],
+//         [false, false, false]];
 
-    function checkFalse(x) {
-        return x == false
-    }
+//     function checkFalse(x) {
+//         return x == false
+//     }
 
-    let i = 0;
-    let gameOver = false;
-    let turn = 'X';
-    let haveWinner = false;
+//     let i = 0;
+//     let gameOver = false;
+//     let turn = 'X';
+//     let haveWinner = false;
 
-    while (gameOver == false && i < moves.length && (matrix[0].some(checkFalse) || matrix[1].some(checkFalse) || matrix[2].some(checkFalse))) {
-        let j = moves[i].slice(0, 1);
-        let k = moves[i].slice(2, 3);
+//     while (gameOver == false && i < moves.length && (matrix[0].some(checkFalse) || matrix[1].some(checkFalse) || matrix[2].some(checkFalse))) {
+//         let j = moves[i].slice(0, 1);
+//         let k = moves[i].slice(2, 3);
 
-        if (matrix[j][k] != false) {
-            console.log("This place is already taken. Please choose another!");
-            i++;
-        }
-        else {
-            matrix[j][k] = turn;
-            if ((matrix[j][0] === matrix[j][1] && matrix[j][1] === matrix[j][2]) ||
-                (matrix[0][k] ===  matrix[1][k] && matrix[1][k] ===  matrix[2][k]) ) {
-                gameOver = true;
-                console.log(`Player ${matrix[j][k]} wins!`);
-                haveWinner = true;
-            }
-            else if ((j == k) || (j == 2 && k == 0) || (j == 0 && k == 2)) {
-                if ((matrix[0][0] === matrix[1][1] && matrix[1][1] === matrix[2][2] && matrix[2][2] !== false) ||
-                (matrix[2][0] === matrix[1][1] && matrix[1][1] === matrix[0][2] && matrix[0][2] !== false)) {
-                        gameOver = true;
-                        console.log(`Player ${matrix[j][k]} wins!`);
-                        haveWinner = true;
-                    }
-            }
+//         if (matrix[j][k] != false) {
+//             console.log("This place is already taken. Please choose another!");
+//             i++;
+//         }
+//         else {
+//             matrix[j][k] = turn;
+//             if ((matrix[j][0] === matrix[j][1] && matrix[j][1] === matrix[j][2]) ||
+//                 (matrix[0][k] ===  matrix[1][k] && matrix[1][k] ===  matrix[2][k]) ) {
+//                 gameOver = true;
+//                 console.log(`Player ${matrix[j][k]} wins!`);
+//                 haveWinner = true;
+//             }
+//             else if ((j == k) || (j == 2 && k == 0) || (j == 0 && k == 2)) {
+//                 if ((matrix[0][0] === matrix[1][1] && matrix[1][1] === matrix[2][2] && matrix[2][2] !== false) ||
+//                 (matrix[2][0] === matrix[1][1] && matrix[1][1] === matrix[0][2] && matrix[0][2] !== false)) {
+//                         gameOver = true;
+//                         console.log(`Player ${matrix[j][k]} wins!`);
+//                         haveWinner = true;
+//                     }
+//             }
 
-            if (i >= (moves.length - 1)){
+//             if (i >= (moves.length - 1)){
   
-                gameOver = true;
-            } else {
-                i++;
-                if (turn == 'X') {
-                    turn = 'O' 
-                }
-                else turn = 'X';
-            }
-        }
-    }
+//                 gameOver = true;
+//             } else {
+//                 i++;
+//                 if (turn == 'X') {
+//                     turn = 'O' 
+//                 }
+//                 else turn = 'X';
+//             }
+//         }
+//     }
 
-    if (!haveWinner) {
-        console.log("The game ended! Nobody wins :(");
-    }
-    console.log(matrix[0].join('\t'));
-    console.log(matrix[1].join('\t'));
-    console.log(matrix[2].join('\t'));
-}
+//     if (!haveWinner) {
+//         console.log("The game ended! Nobody wins :(");
+//     }
+//     console.log(matrix[0].join('\t'));
+//     console.log(matrix[1].join('\t'));
+//     console.log(matrix[2].join('\t'));
+// }
 //TicTacToe(["0 1", "0 0", "0 2", "2 0", "1 0", "1 1", "1 2", "2 2", "2 1", "0 0"]);
 //TicTacToe(["0 0", "0 0", "1 1", "0 1", "1 2", "0 2", "2 2", "1 2", "2 2", "2 1"]);
 //TicTacToe(["0 1", "0 0", "0 2", "2 0", "1 0", "1 2", "1 1", "2 1", "2 2", "0 0"]);
-TicTacToe(["0 1", "0 0", "0 2", "2 0", "1 0", "1 2", "1 1", "2 1", "2 2", "0 0"]);//
+//TicTacToe(["0 1", "0 0", "0 2", "2 0", "1 0", "1 2", "1 1", "2 1", "2 2", "0 0"]);//
 
 // //9. Magic Matrices
 
