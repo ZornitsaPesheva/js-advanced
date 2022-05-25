@@ -1,35 +1,128 @@
-//11. Diagonal Attack
+// 12. Orbit
 
-function diagonalAttack(array) {
-    let sum1 = 0;
-    let sum2 = 0;
-    let k = array.length - 1;
+function orbit(input) {
+    let width = input[0];
+    let height = input[1];
+    let x = input[2];
+    let y = input[3];
     let matrix = [];
-    for (let i = 0; i < array.length; i++) {
-        let j = i;
-        let row = array[i].split(' ').map(x => Number(x));
-        sum1 += row[j];
-        sum2 += row[k];
-        k--;
-        matrix.push(row);
-    }
-    k = matrix.length - 1;
-    if (sum1 == sum2) {
-        for (let i = 0; i < matrix.length; i++) {
-            for (let j = 0; j < matrix[0].length; j++ )
-            if (i != j && j != k) {
-                matrix[i][j] = sum1;
-            }
-            k--;
+    for (let i = 0; i < width; i++) {
+        matrix.push([]);
+        for (let j = 0; j < height; j++) {
+            matrix[i].push(0);
         }
-
     }
-    for (let i = 0; i < matrix.length; i++){
+
+    matrix[x][y] = 1;
+
+
+    while (x < matrix[0].length - 1 && y < matrix.length - 1) {
+        let i = x;
+        let j = y;
+        while (j < matrix.length - 1) {
+            j++
+            matrix[i][j] = matrix[i][j-1] + 1;
+        }
+        j = y;
+        while (i < matrix[0].length - 1) {
+            i++
+            matrix[i][j] = matrix[i-1][j] + 1;
+        }
+        x++;
+        y++;
+        matrix[x][y] = matrix[x - 1][y - 1] + 1;
+    }
+    
+    x = input[2];
+    y = input[3];
+
+    if (x > 0 || y > 0) {
+        while (x > 0 && y > 0) {
+            let i = x;
+            let j = y;
+            while (j > 0) {
+                j--;
+                matrix[i][j] = matrix[i][j+1] + 1;
+            }
+            j = y;
+            while (i > 0) {
+                i--;
+                matrix[i][j] = matrix[i+1][j] + 1;
+            }
+            x--;
+            y--;
+            matrix[x][y] = matrix[x + 1][y + 1] + 1;
+        }
+    }
+
+
+    let i = 1
+
+     for (let row = input[2] + 1; row < matrix.length; row++) {
+        for (let col = input[3] - 1; col >= 0; col--) {
+           matrix[row][col] = matrix[row - 1][col + 1]  + 1;
+        }
+     }
+
+     for (let row = input[2] - 1; row >= 0; row--) {
+        for (let col = input[3] + 1; col < matrix[0].length; col++) {
+           matrix[row][col] = matrix[row + 1][col - 1]  + 1;
+        }
+     }
+
+     for (let row = input[2] + 1; row < matrix.length; row++) {
+        for (let col = input[3] + 1; col < matrix[0].length; col++) {
+           matrix[row][col] = matrix[row - 1][col - 1]  + 1;
+        }
+     }
+     for (let row = input[2] - 1; row >= 0; row--) {
+        for (let col = input[3] - 1; col >= 0; col--) {
+           matrix[row][col] = matrix[row + 1][col + 1]  + 1;
+        }
+     }
+
+    for (let i = 0; i < matrix[0].length; i++){
         console.log(matrix[i].join(' '));
     } 
 }
 
-diagonalAttack(['5 3 12 3 1', '11 4 23 2 5', '101 12 3 21 10', '1 4 5 2 2', '5 22 33 11 1']);
+orbit([4, 4, 0, 0]);
+orbit([5, 5, 2, 2]);
+orbit([3, 3, 2, 2]);
+orbit([4, 4, 1, 2]);
+
+//11. Diagonal Attack
+
+// function diagonalAttack(array) {
+//     let sum1 = 0;
+//     let sum2 = 0;
+//     let k = array.length - 1;
+//     let matrix = [];
+//     for (let i = 0; i < array.length; i++) {
+//         let j = i;
+//         let row = array[i].split(' ').map(x => Number(x));
+//         sum1 += row[j];
+//         sum2 += row[k];
+//         k--;
+//         matrix.push(row);
+//     }
+//     k = matrix.length - 1;
+//     if (sum1 == sum2) {
+//         for (let i = 0; i < matrix.length; i++) {
+//             for (let j = 0; j < matrix[0].length; j++ )
+//             if (i != j && j != k) {
+//                 matrix[i][j] = sum1;
+//             }
+//             k--;
+//         }
+
+//     }
+//     for (let i = 0; i < matrix.length; i++){
+//         console.log(matrix[i].join(' '));
+//     } 
+// }
+
+// diagonalAttack(['5 3 12 3 1', '11 4 23 2 5', '101 12 3 21 10', '1 4 5 2 2', '5 22 33 11 1']);
 
 
 //10 Tic-tac-Toe
