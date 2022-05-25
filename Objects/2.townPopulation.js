@@ -1,13 +1,17 @@
 function townPopulation(list){
-    //iterate input
     const result = {};
     for (const town of list) {
-        
+        const tokens = town.split(' <-> ');
+        const name = tokens[0];
+        let pop = Number(tokens[1]);
+        if (result[name] != undefined) {
+            pop += result[name];
+        }
+        result[name] = pop;
     }
-
-    // parse each element
-
-    //store result
+    for (let [name, pop] of Object.entries(result)) {
+        console.log(`${name} : ${pop}`);
+    }
 }
 
 townPopulation(['Sofia <-> 1200000', 'Montana <-> 20000', 'New York <-> 10000000', 'Washington <-> 2345000', 'Las Vegas <-> 1000000']);
