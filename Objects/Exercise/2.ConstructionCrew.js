@@ -1,6 +1,6 @@
 function constructionCrew(worker) {
     if (worker.dizziness == true) {
-        let waterToTake = 0.1 * worker.weight * worker.experience;
+        worker.levelOfHydrated += 0.1 * worker.weight * worker.experience;
     }
 }
 
