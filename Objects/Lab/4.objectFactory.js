@@ -1,5 +1,8 @@
 function objectFactory(lib, list) {
+   // return list.map(order => Object.assign({}, order.template, Object.fromEntries(order.parts.map(p => [p, lib[p]]))))
+
     return list.map(order => {
+        
         const object = Object.assign({}, order.template);
 
         for (let part of order.parts) {
