@@ -21,7 +21,7 @@ function fromHTMLtoTable(string) {
        table += tableData;
     }
     table += `</table>`;
-    console.log(table);
+  //  console.log(table);
     let result = table.replace('<\g', '&lt').replace('>\g', '&gt'). replace('/\g', '//');
     return result;
 }
