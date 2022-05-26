@@ -1,23 +1,18 @@
 function carFactory(car) {
     car.engine = function() { 
         if (car.power >= 200) {
-            car.engine = {
-                power: 200,
-                volume: 3500
-            }
+            return { power: 200, volume: 3500 }
         }
         else if (car.engine >= 120) {
-            car.engine = {
-                power: 120,
-                volume: 2400
-            }
+           return  { power: 120, volume: 2400 }
         } 
-        else {
-            car.engine = {
-                power: 90,
-                volume: 1800
-            }
+        else { 
+           return { power: 90, volume: 1800 }
         }
+    }
+
+    car.carriage = function() {
+
     }
 }
 
