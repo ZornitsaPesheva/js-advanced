@@ -3,7 +3,7 @@ function fromHTMLtoTable(string) {
     let table = '';
     table += (`<table>\n`);
     let heather = '';
-    heather += ('   <tr>');
+    heather += ('<tr>');
     for (let key of Object.keys(data[0])) {
         heather +=  (`<th>${key}</th>`);
     }
@@ -12,17 +12,18 @@ function fromHTMLtoTable(string) {
 
     
     for (let row of data) {
-        let tableData = '   <tr>';
+        let tableData = '<tr>';
         let student = Object.values(row);
         for (let sd of student){
-            tableData += `<td>${sd}</td>`;
+            tableData += `<td>${(sd.toString())}</td>`;
         }
        tableData += '</tr>\n';
        table += tableData;
     }
     table += `</table>`;
-  //  console.log(table);
-    let result = table.replace('<\g', '&lt').replace('>\g', '&gt'). replace('/\g', '//');
+    console.log(table);
+    let result = table
+        .replace('<\g', '&lt').replace('>\g', '&gt').replace('/\g', '//').replace('"\g', '&quot').replace("'\g", '&#39').replace('/&\g', '&amp;');
     return result;
 }
 
