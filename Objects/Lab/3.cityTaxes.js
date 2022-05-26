@@ -21,4 +21,11 @@ const city = cityTaxes('Tortuga', 7000, 15000);
 
 console.log(city);
 //const {name, treasury} = myCity;
+const asString = JSON.stringify(city);
+console.log(asString);
+
+const cityFromString = '{"name":"Tortuga","population":7000,"treasury":15000,"taxRate":10}';
+
+const parsed = JSON.parse(cityFromString);
+console.log(parsed.name);
 
