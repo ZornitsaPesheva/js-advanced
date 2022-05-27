@@ -1,20 +1,34 @@
 function carFactory(car) {
-    car.engine = function() { 
+    setengine = function(car) { 
         if (car.power >= 200) {
-            return { power: 200, volume: 3500 }
+            return car.engine = { power: 200, volume: 3500 }
         }
-        else if (car.engine >= 120) {
-           return  { power: 120, volume: 2400 }
+        else if (car.power >= 120) {
+            return car.engine = { power: 120, volume: 2400 }
         } 
         else { 
-           return { power: 90, volume: 1800 }
+            return car.engine = { power: 90, volume: 1800 }r
         }
     }
 
-    car.carriage = function() {
-
+    setcarriage = function(car) {
+        if (car.carriage == 'hatchback') {
+            return car.carriage = { tipe: 'hatchback' ,color: car.color }
+        }
+        else {
+            return car.carriage = { tipe: 'coupe' ,color: car.color }
+        }
     }
+    
+    setWheels = function(car) {
+        
+    }
+
+    setengine(car);
+    setcarriage(car);
+
+    return car;
 }
 
-carFactory({ model: 'VW Golf II', power: 90, color: 'blue', carriage: 'hatchback', wheelsize: 14 });
-carFactory({ model: 'Opel Vectra', power: 110, color: 'grey', carriage: 'coupe', wheelsize: 17});
+console.log(carFactory({ model: 'VW Golf II', power: 90, color: 'blue', carriage: 'hatchback', wheelsize: 14 }));
+console.log(carFactory({ model: 'Opel Vectra', power: 110, color: 'grey', carriage: 'coupe', wheelsize: 17}));
