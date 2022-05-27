@@ -3,8 +3,7 @@ function heroicInventory(list) {
     for (let h of list) {
         let [name, level, items] = h.split(' / ')
         level = Number(level);
-        items = items ? items.split
-        (',').map(item => item.trim()) : [];
+        items = items ? items.split(',').map(item => item.trim()) : [];
         result.push({name, level, items});
     }
     console.log(JSON.stringify(result));
