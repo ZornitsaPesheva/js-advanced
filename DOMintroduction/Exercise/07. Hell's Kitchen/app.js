@@ -3,11 +3,15 @@ function solve() {
 
    function onClick () {
       let restourants = [];
-      let workers = JSON.parse(document.getElementsByTagName('textarea')[0].value.replace(' \g', ''));
+      let workers = JSON.parse(document.getElementsByTagName('textarea')[0].value);
 
       for (let worker of workers) {
-         console.log(worker);
-         
+         let splitted = worker.split(' - ');
+         let restourant = {};
+         restourant.name = splitted[0];
+         restourant.workers = splitted[1];
+         restourants.push(restourant);
       }
+      console.log(restourants);
    }
 }
