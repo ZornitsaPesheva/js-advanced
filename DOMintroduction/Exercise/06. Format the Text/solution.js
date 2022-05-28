@@ -9,7 +9,7 @@ function solve() {
   for (let i = 0; i < setneces.length; i += 3) {
     let p = document.createElement('p');
     p.textContent = '';
-    for (j = i; j <= i + 3; j++){
+    for (j = i; j <= i + 2; j++){
       if ( setneces[j] != undefined ){
         p.textContent += `${setneces[j]}.`;
       }
