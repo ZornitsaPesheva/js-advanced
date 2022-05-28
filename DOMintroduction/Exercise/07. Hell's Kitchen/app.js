@@ -2,7 +2,8 @@ function solve() {
    document.querySelector('#btnSend').addEventListener('click', onClick);
 
    function onClick () {
-      //   TODO:
+      let workers = document.getElementsByTagName('textarea')[0].value;
+      console.log(workers);
       
    }
 }
