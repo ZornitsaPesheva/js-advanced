@@ -10,7 +10,12 @@ function solve() {
          let restourant = {};
          restourant.name = splitted[0];
          restourant.workers = splitted[1];
-         restourants.push(restourant);
+         if (restourants.some(r => r.name == splitted[0])) {
+            console.log('add worker only');
+         }
+         else {
+            restourants.push(restourant);
+         }
       }
       console.log(restourants);
    }
