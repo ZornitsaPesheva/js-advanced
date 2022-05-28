@@ -12,15 +12,14 @@ function solve() {
          restaurant.workers = splitted[1].split(', ');
          if (restaurants.some(r => r.name == splitted[0])) {
             let restaurantToAddTo = restaurants.filter(r => r.name == splitted[0])[0];
-            console.log(restaurantToAddTo.workers);
-            // for (let w of restaurant.workers) {
-            //    restaurantToAddTo.workers.push(w);
-            // }
+            for (let w of restaurant.workers) {
+             restaurantToAddTo.workers.push(w);
+            }
          }
          else {
             restaurants.push(restaurant);
          }
       }
-   //   console.log(restaurants);
+      console.log(restaurants);
    }
 }
