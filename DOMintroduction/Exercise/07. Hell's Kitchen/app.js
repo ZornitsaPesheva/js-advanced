@@ -2,21 +2,25 @@ function solve() {
    document.querySelector('#btnSend').addEventListener('click', onClick);
 
    function onClick () {
-      let restourants = [];
+      let restaurants = [];
       let workers = JSON.parse(document.getElementsByTagName('textarea')[0].value);
 
       for (let worker of workers) {
          let splitted = worker.split(' - ');
-         let restourant = {};
-         restourant.name = splitted[0];
-         restourant.workers = splitted[1];
-         if (restourants.some(r => r.name == splitted[0])) {
-            console.log('add worker only');
+         let restaurant = {};
+         restaurant.name = splitted[0];
+         restaurant.workers = splitted[1].split(', ');
+         if (restaurants.some(r => r.name == splitted[0])) {
+            let restaurantToAddTo = restaurants.filter(r => r.name == splitted[0])[0];
+            console.log(restaurantToAddTo.workers);
+            // for (let w of restaurant.workers) {
+            //    restaurantToAddTo.workers.push(w);
+            // }
          }
          else {
-            restourants.push(restourant);
+            restaurants.push(restaurant);
          }
       }
-      console.log(restourants);
+   //   console.log(restaurants);
    }
 }
