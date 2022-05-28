@@ -4,7 +4,12 @@ function solve() {
   let divElemet = document.getElementById('output');
   for (let i = 0; i < seteces.length; i += 3) {
     let p = document.createElement('p');
-    p.textContent = `${seteces[i]}${seteces[i+1]}${seteces[i+2]}`;
-    divElemet.append(p);
+    p.textContent = '';
+    for (j = i; j <= i + 3; j++){
+      if ( seteces[j] != undefined ){
+        p.textContent += `${seteces[j]}`;
+      }
+    }
+    divElemet.appendChild(p);
   }
 }
