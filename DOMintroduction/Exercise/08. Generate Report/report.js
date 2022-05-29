@@ -8,14 +8,15 @@ function generateReport() {
     }
    // console.log(checked);
     let array = [];
-    let object = {};
     let rows = document.getElementsByTagName('table')[0].rows.length;
     for (let i = 1; i < rows; i++) {
+        let object = {};
         for (let j = 0; j < checked.length; j++) {
             let propName = document.querySelector(`th:nth-of-type(${checked[j]+1})`).textContent;
-            console.log(propName);
+            let propValue = document.querySelector(`tbody tr:nth-of-type(${i}) td:nth-of-type(${checked[j]+1})`).textContent
+            object[propName] = propValue;
         }
-
+        array.push(object);
     }
-    //onsole.log(checked[0]);
+    console.log(array);
 }
