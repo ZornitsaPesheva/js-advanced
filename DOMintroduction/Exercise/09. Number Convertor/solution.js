@@ -1,10 +1,10 @@
 function solve() {
         let optionBinary = document.createElement('option');
         optionBinary.value = 'binary';
-        optionBinary.innerHTML = 'binary';
+        optionBinary.innerHTML = 'Binary';
         let optionHexaDecimal = document.createElement('option');
         optionHexaDecimal.value = 'hexadecimal';
-        optionHexaDecimal.innerHTML = 'hexadecimal';
+        optionHexaDecimal.innerHTML = 'Hexadecimal';
         let selectMenu = document.getElementById('selectMenuTo');
         selectMenu.appendChild(optionBinary);
         selectMenu.appendChild(optionHexaDecimal);
@@ -14,9 +14,6 @@ function solve() {
             let rem, i = 1, step = 1;
             while (x != 0) {
                 rem = x % 2;
-                // console.log(
-                //     `Step ${step++}: ${x}/2, Remainder = ${rem}, Quotient = ${parseInt(x/2)}`
-                // );
                 x = parseInt(x / 2);
                 bin = bin + rem * i;
                 i = i * 10;
@@ -25,14 +22,8 @@ function solve() {
             return bin;
         }
 
-        function decimalToHexString(number)
-        {
-        if (number < 0)
-        {
-            number = 0xFFFFFFFF + number + 1;
-        }
-
-        return number.toString(16).toUpperCase();
+        function toHex(d) {
+            return  ("0"+(Number(d).toString(16))).slice(-2).toUpperCase()
         }
 
         let converted = '';
@@ -41,16 +32,16 @@ function solve() {
             let decimal = document.getElementById('input').value;         
             let convertTo = selectMenu.value;
             if (convertTo == 'binary') {
-
                 converted = convertToBinary(decimal);
+                console.log(converted);
+                let result = document.getElementById('result');
+                result.value = converted;
             }
             else if (convertTo == 'hexadecimal') {
-                converted = decimalToHexString(decimal)
+                converted = toHex(decimal);
+                let result = document.getElementById('result');
+                result.value = converted;
             }
+            else {}
         });
-    
-        let result = document.getElementById('result');
-        console.log(result);
-       // result.value = converted;
-
 }
