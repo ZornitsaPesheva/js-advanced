@@ -10,6 +10,10 @@ function solve() {
          let restaurant = {};
          restaurant.name = splitted[0];
          restaurant.workers = splitted[1].split(', ');
+         let workers = [];
+         let workerToAdd = {};
+         
+         console.log(restaurant.workers);
          if (restaurants.some(r => r.name == splitted[0])) {
             let restaurantToAddTo = restaurants.filter(r => r.name == splitted[0])[0];
             for (let w of restaurant.workers) {
@@ -38,11 +42,10 @@ function solve() {
       let bestAvarageSalary = Math.max(...restaurants.map(r => r.avarage));
       let bestRestaurant = restaurants.find(r => r.avarage == bestAvarageSalary)
       let pName = document.querySelector('#bestRestaurant p');
-      pName.textContent = `Name: ${bestRestaurant.name} Average salary: ${bestRestaurant.avarage} Best salary: ${bestRestaurant.best}`;
+      pName.textContent = `Name: ${bestRestaurant.name} Average Salary: ${bestRestaurant.avarage} Best Salary: ${bestRestaurant.best}`;
       let pWorkers = document.querySelector('#workers p');
       for (w of bestRestaurant.workers) {
          pWorkers.textContent += `Name: ${w.split(' ')[0]} With Salary: ${w.split(' ')[1]} `;
       }
-
    }
 }
