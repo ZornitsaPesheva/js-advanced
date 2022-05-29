@@ -3,14 +3,16 @@ function solve() {
 
    function onClick() {
       let restaurants = [];
-      let workers = JSON.parse(document.getElementsByTagName('textarea')[0].value);
+      let bestAvarageSalary = 0;
+      let bestRestourantName = '';
+      if (document.getElementsByTagName('textarea')[0].value != '') {
+         let workers = JSON.parse(document.getElementsByTagName('textarea')[0].value);
 
       for (let worker of workers) {
          let splitted = worker.split(' - ');
          let restaurant = {};
          restaurant.name = splitted[0];
          let workers = [];
-
          let workersToAdd = splitted[1].split(', ');
          for (let w of workersToAdd) {
             let workerToAdd = {};
@@ -19,33 +21,42 @@ function solve() {
             workers.push(workerToAdd);
          }
          restaurant.workers = workers;
-         restaurant.workers.sort((w1, w2) => w2.salary - w1.salary);
+
+         avarageSalarySet = function(rest) {
+            
+            let sum = 0;
+            for (let i = 0; i < rest.workers.length; i++) {
+               sum += rest.workers[i].salary;
+            }
+            rest.avarage = (sum / (rest.workers.length)).toFixed(2);
+            rest.workers.sort((w1, w2) => w2.salary - w1.salary);
+            rest.best = rest.workers[0].salary.toFixed(2);
+
+            if (Number(rest.avarage) > Number(bestAvarageSalary)) {
+               bestAvarageSalary = rest.avarage;
+               bestRestourantName = rest.name;
+            }
+         }
+
+
          if (restaurants.some(r => r.name == splitted[0])) {
+            
             let restaurantToAddTo = restaurants.filter(r => r.name == splitted[0])[0];
+            
             for (let w of restaurant.workers) {
                restaurantToAddTo.workers.push(w);
+               
+               avarageSalarySet(restaurantToAddTo);
             }
          }
          else {
+
+            avarageSalarySet(restaurant);
             restaurants.push(restaurant);
          }
       }
 
-      console.log(restaurants);
-
-      for (let r of restaurants) {
-         let avarage = 0;
-         let sum = 0;
-         r.best = r.workers[0].salary.toFixed(2);
-         
-         for (let i = 0; i < r.workers.length; i++) {
-            sum += r.workers[i].salary;
-         }
-         avarage = sum / (r.workers.length);
-         r.avarage = avarage.toFixed(2);
-      }
-      let bestAvarageSalary = Math.max(...restaurants.map(r => r.avarage));
-      let bestRestaurant = restaurants.find(r => r.avarage == bestAvarageSalary)
+      let bestRestaurant = restaurants.find(r => r.name == bestRestourantName)
       let pName = document.querySelector('#bestRestaurant p');
       pName.textContent = `Name: ${bestRestaurant.name} Average Salary: ${bestRestaurant.avarage} Best Salary: ${bestRestaurant.best}`;
       let pWorkers = document.querySelector('#workers p');
@@ -54,5 +65,7 @@ function solve() {
          bestRestaurantWorkers += `Name: ${w.name} With Salary: ${w.salary} `;
       }
       pWorkers.textContent = bestRestaurantWorkers;
+      }
+      
    }
 }
