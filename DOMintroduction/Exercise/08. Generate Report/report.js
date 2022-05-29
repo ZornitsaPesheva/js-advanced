@@ -6,11 +6,16 @@ function generateReport() {
             checked.push(i)
         }
     }
-    console.log(checked);
+   // console.log(checked);
     let array = [];
     let object = {};
     let rows = document.getElementsByTagName('table')[0].rows.length;
-    for (let i = 0; i < rows; i++) {
-        console.log(`get ${checked} for row${i}`);
+    for (let i = 1; i < rows; i++) {
+        for (let j = 0; j < checked.length; j++) {
+            let propName = document.querySelector(`th:nth-of-type(${checked[j]+1})`).textContent;
+            console.log(propName);
+        }
+
     }
+    //onsole.log(checked[0]);
 }
