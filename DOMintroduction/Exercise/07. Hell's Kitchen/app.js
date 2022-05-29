@@ -18,9 +18,6 @@ function solve() {
             workerToAdd.salary = Number(w.split(' ')[1]);
             workers.push(workerToAdd);
          }
-
-         
-
          restaurant.workers = workers;
          restaurant.workers.sort((w1, w2) => w2.salary - w1.salary);
          if (restaurants.some(r => r.name == splitted[0])) {
@@ -39,17 +36,13 @@ function solve() {
       for (let r of restaurants) {
          let avarage = 0;
          let sum = 0;
-         let best = 0;
+         r.best = r.workers[0].salary.toFixed(2);
+         
          for (let i = 0; i < r.workers.length; i++) {
-            let salary = Number(r.workers[i].split(' ')[1]);
-            sum += salary;
-            if (salary > best) {
-               best = salary;
-            }
+            sum += r.workers[i].salary;
          }
          avarage = sum / (r.workers.length);
          r.avarage = avarage.toFixed(2);
-         r.best = best;
       }
       let bestAvarageSalary = Math.max(...restaurants.map(r => r.avarage));
       let bestRestaurant = restaurants.find(r => r.avarage == bestAvarageSalary)
@@ -57,7 +50,7 @@ function solve() {
       pName.textContent = `Name: ${bestRestaurant.name} Average Salary: ${bestRestaurant.avarage} Best Salary: ${bestRestaurant.best}`;
       let pWorkers = document.querySelector('#workers p');
       for (w of bestRestaurant.workers) {
-         pWorkers.textContent += `Name: ${w.split(' ')[0]} With Salary: ${w.split(' ')[1]} `;
+         pWorkers.textContent += `Name: ${w.name} With Salary: ${w.salary} `;
       }
    }
 }
