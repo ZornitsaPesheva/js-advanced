@@ -39,5 +39,10 @@ function solve() {
       let bestRestaurant = restaurants.find(r => r.avarage == bestAvarageSalary)
       let pName = document.querySelector('#bestRestaurant p');
       pName.textContent = `Name: ${bestRestaurant.name} Average salary: ${bestRestaurant.avarage} Best salary: ${bestRestaurant.best}`;
+      let pWorkers = document.querySelector('#workers p');
+      for (w of bestRestaurant.workers) {
+         pWorkers.textContent += `Name: ${w.split(' ')[0]} With Salary: ${w.split(' ')[1]} `;
+      }
+
    }
 }
