@@ -23,12 +23,17 @@ function solve() {
       for (let r of restaurants) {
          let avarage = 0;
          let sum = 0;
+         let best = 0;
          for (let i = 0; i < r.workers.length; i++) {
             let salary = Number(r.workers[i].split(' ')[1]);
             sum += salary;
+            if (salary > best) {
+               best = salary;
+            }
          }
          avarage = sum / (r.workers.length);
          r.avarage = avarage.toFixed(2);
+         r.best = best;
       }
       console.log(restaurants);
    }
