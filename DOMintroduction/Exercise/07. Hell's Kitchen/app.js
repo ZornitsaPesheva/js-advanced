@@ -1,7 +1,7 @@
 function solve() {
    document.querySelector('#btnSend').addEventListener('click', onClick);
 
-   function onClick () {
+   function onClick() {
       let restaurants = [];
       let workers = JSON.parse(document.getElementsByTagName('textarea')[0].value);
 
@@ -9,21 +9,31 @@ function solve() {
          let splitted = worker.split(' - ');
          let restaurant = {};
          restaurant.name = splitted[0];
-         restaurant.workers = splitted[1].split(', ');
          let workers = [];
-         let workerToAdd = {};
-         
-         console.log(restaurant.workers);
+
+         let workersToAdd = splitted[1].split(', ');
+         for (let w of workersToAdd) {
+            let workerToAdd = {};
+            workerToAdd.name = w.split(' ')[0];
+            workerToAdd.salary = w.split(' ')[1];
+            workers.push(workerToAdd);
+         }
+
+
+         restaurant.workers = workers;
          if (restaurants.some(r => r.name == splitted[0])) {
             let restaurantToAddTo = restaurants.filter(r => r.name == splitted[0])[0];
             for (let w of restaurant.workers) {
-             restaurantToAddTo.workers.push(w);
+               restaurantToAddTo.workers.push(w);
             }
          }
          else {
             restaurants.push(restaurant);
          }
       }
+
+      
+
       for (let r of restaurants) {
          let avarage = 0;
          let sum = 0;
