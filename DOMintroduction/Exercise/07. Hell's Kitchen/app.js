@@ -35,6 +35,8 @@ function solve() {
          r.avarage = avarage.toFixed(2);
          r.best = best;
       }
-      console.log(restaurants);
+      let bestAvarageSalary = Math.max(...restaurants.map(r => r.avarage));
+      let bestRestaurant = restaurants.find(r => r.avarage == bestAvarageSalary)
+      console.log(bestRestaurant);
    }
 }
