@@ -38,6 +38,6 @@ function solve() {
       let bestAvarageSalary = Math.max(...restaurants.map(r => r.avarage));
       let bestRestaurant = restaurants.find(r => r.avarage == bestAvarageSalary)
       let pName = document.querySelector('#bestRestaurant p');
-      pName.textContent = bestRestaurant.name;
+      pName.textContent = `Name: ${bestRestaurant.name} Average salary: ${bestRestaurant.avarage} Best salary: ${bestRestaurant.best}`;
    }
 }
