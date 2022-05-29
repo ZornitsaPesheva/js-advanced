@@ -6,17 +6,17 @@ function generateReport() {
             checked.push(i)
         }
     }
-   // console.log(checked);
+
     let array = [];
     let rows = document.getElementsByTagName('table')[0].rows.length;
     for (let i = 1; i < rows; i++) {
         let object = {};
         for (let j = 0; j < checked.length; j++) {
-            let propName = document.querySelector(`th:nth-of-type(${checked[j]+1})`).textContent;
+            let propName = document.querySelector(`th:nth-of-type(${checked[j]+1})`).textContent.toLowerCase().trim();
             let propValue = document.querySelector(`tbody tr:nth-of-type(${i}) td:nth-of-type(${checked[j]+1})`).textContent
             object[propName] = propValue;
         }
         array.push(object);
     }
-    console.log(array);
+    document.getElementById('output').textContent = JSON.stringify(array);
 }
