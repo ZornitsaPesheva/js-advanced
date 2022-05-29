@@ -15,12 +15,14 @@ function solve() {
          for (let w of workersToAdd) {
             let workerToAdd = {};
             workerToAdd.name = w.split(' ')[0];
-            workerToAdd.salary = w.split(' ')[1];
+            workerToAdd.salary = Number(w.split(' ')[1]);
             workers.push(workerToAdd);
          }
 
+         
 
          restaurant.workers = workers;
+         restaurant.workers.sort((w1, w2) => w2.salary - w1.salary);
          if (restaurants.some(r => r.name == splitted[0])) {
             let restaurantToAddTo = restaurants.filter(r => r.name == splitted[0])[0];
             for (let w of restaurant.workers) {
@@ -32,7 +34,7 @@ function solve() {
          }
       }
 
-      
+      console.log(restaurants);
 
       for (let r of restaurants) {
          let avarage = 0;
