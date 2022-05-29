@@ -49,8 +49,10 @@ function solve() {
       let pName = document.querySelector('#bestRestaurant p');
       pName.textContent = `Name: ${bestRestaurant.name} Average Salary: ${bestRestaurant.avarage} Best Salary: ${bestRestaurant.best}`;
       let pWorkers = document.querySelector('#workers p');
+      let bestRestaurantWorkers = '';
       for (w of bestRestaurant.workers) {
-         pWorkers.textContent += `Name: ${w.name} With Salary: ${w.salary} `;
+         bestRestaurantWorkers += `Name: ${w.name} With Salary: ${w.salary} `;
       }
+      pWorkers.textContent = bestRestaurantWorkers;
    }
 }
