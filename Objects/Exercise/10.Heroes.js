@@ -13,7 +13,7 @@ function solve() {
         }
     })
 
-    const figther = (name) => {
+    const fighter = (name) => {
         let state = {
             name,
             health: 100,
@@ -28,10 +28,10 @@ function solve() {
             health: 100,
             mana: 100
         }
-        return Object.assign(state, canFight(state));
+        return Object.assign(state, canCast(state));
     }
-    
-    return { mage: mage, figther: figther}
+fighter
+    return { mage: mage, fighter: fighter}
 }
 
 let create = solve();
