@@ -9,6 +9,8 @@ function createSortedList(){
     };
     object.remove = function(index){
         delete this.numbers[index];
+        this.numbers.sort((a, b) => a - b);
+        return this.numbers;
     };
     object.get = function(index){
        return this.numbers[index];
@@ -23,8 +25,6 @@ let list = createSortedList();
 list.add(5);
 list.add(6);
 list.add(7); 
-//console.log(list);
 console.log(list.get(1)); 
-//console.log(list.get(1)); 
-// list.remove(1); 
-// console.log(list.get(1));
+list.remove(1); 
+console.log(list.get(1));
