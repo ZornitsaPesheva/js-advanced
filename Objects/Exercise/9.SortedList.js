@@ -1,30 +1,42 @@
-function createSortedList(){
-    const object = {
-        numbers: []
+function createSortedList() {
+    let list = [];
+ 
+    function add(element) {
+        list.push(element);
+        list.sort((a, b) => a - b);
+        this.size++;
     };
-    object.add = function(element){
-        this.numbers.push(element)
-        this.numbers.sort((a, b) => a - b);
-        return this.numbers;
+ 
+    function remove(index) {
+        if (index < 0 || index >= this.size) {
+            throw new Error('Index is out of bounds');
+        }
+        list.splice(index, 1);
+        this.size--;
     };
-    object.remove = function(index){
-        delete this.numbers[index];
-        this.numbers.sort((a, b) => a - b);
-        return this.numbers;
+ 
+    function get(index) {
+        if (index < 0 || index >= this.size) {
+            throw new Error('Index is out of bounds');
+        }
+        return list[index];
     };
-    object.get = function(index){
-       return this.numbers[index];
-    }
-    object.size = function(){
-        return this.numbers.length;
-    }
-    return object;
+ 
+    function size() {
+        return this.size;
+    };
+ 
+    let obj = {add, remove, get, size: 0};
+    return obj;
 }
+
+
 
 let list = createSortedList();
 list.add(5);
 list.add(6);
 list.add(7); 
+
 console.log(list.get(1)); 
 list.remove(1); 
 console.log(list.get(1));
