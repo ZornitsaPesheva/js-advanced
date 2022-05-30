@@ -1,3 +1,34 @@
+// function createSortedList() {
+//     let obj = {
+//         size: 0,
+//         arr: [],
+//         add(element) {
+//             obj.arr.push(element);
+//             obj.size++;
+//             obj.arr.sort((a, b) => a - b);
+//         },
+//         remove(elIndex) {
+//             if(obj.arr[elIndex]==undefined ){
+//                 return undefined;
+//             } else {    
+//                 obj.arr.splice(elIndex, 1);
+//                 obj.size--;
+//                 obj.arr.sort((a, b) => a - b);
+//             } 
+            
+//         },
+//         get(elIndex) { 
+//             if(obj.arr[elIndex]==undefined) {
+//                 return undefined;
+//             } else {
+//                 return obj.arr[elIndex];
+//             }
+//         }
+//     };
+ 
+//     return obj;
+// }
+
 function createSortedList() {
     let list = [];
  
