@@ -18,11 +18,11 @@
             const ul = document.querySelector('ul');
             const items = [...ul.children];
             items.sort((a, b) => Number(a.textContent) - Number(b.textContent));
-
-            for (const item of items) {
-                console.log(item);
-                ul.appendChild(item);
-            }
+            ul.append(...items);
+            // for (const item of items) {
+            //     console.log(item);
+            //     ul.appendChild(item);
+            // }
         }
     </script>
 </body>
