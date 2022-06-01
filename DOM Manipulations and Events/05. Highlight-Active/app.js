@@ -6,11 +6,10 @@ function focused() {
         });
 
     function onFocus(ev) {
-        ev.target.parentElement.className = 'focused';
+        ev.target.parentElement.classList.add('focused');
     }
 
     function onBlur(ev) {
-        ev.target.parentElement.className = '';
-        
+        ev.target.parentElement.classList.remove('focused');
     }
 }
