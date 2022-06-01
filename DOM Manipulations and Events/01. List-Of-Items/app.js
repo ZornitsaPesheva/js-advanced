@@ -1,7 +1,7 @@
 function addItem() {
-    const content = document.getElementById('newItemText').value;
+    const content = document.getElementById('newItemText');
     const listElement = document.createElement('li');
-    listElement.textContent = content;
+    listElement.textContent = content.value;
     document.getElementById('items').appendChild(listElement);
-    document.getElementById('newItemText').value = '';
+    content.value = '';
 }
