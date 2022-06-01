@@ -4,8 +4,7 @@ function deleteByEmail() {
     let found = false;
     for (let row of rows) {
         if (row.children[1].textContent == value) {
-            const parent = row.parentElement;
-            parent.removeChild(row);
+            row.remove();
             found = true;
         }
     }
