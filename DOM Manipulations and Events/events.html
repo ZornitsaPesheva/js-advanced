@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">0</button>
+    <script>
+        const btn = document.querySelector('button');
+        btn.addEventListener('click', increment);
+        btn.addEventListener('click', second);
+        function increment() {
+            const newValue = Number(btn.textContent) + 1;
+            btn.textContent = newValue;
+            console.log('first click event');
+        }
+        function second() {
+            console.log('second click event');
+        }
+    //     const btn = document.getElementById('btn');
+    //     //btn.onclick = logEventData;
+    //     btn.addEventListener('click', logEventData);
+    //    // btn.removeEventListener('click', logEventData);
+    //     function logEventData(е) {
+    //         console.log('clicked');
+    //         console.log(е);
+    //     }
+    </script>
+</body>
+</html>
