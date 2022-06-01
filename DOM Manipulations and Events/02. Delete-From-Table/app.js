@@ -9,10 +9,5 @@ function deleteByEmail() {
             found = true;
         }
     }
-    if (found) {
-        document.getElementById('result').textContent = 'Deleted';
-    }
-    else {
-        document.getElementById('result').textContent = 'Not found.'
-    }
+    document.getElementById('result').textContent = found ? 'Deleted.' : 'Not found.';
 }
