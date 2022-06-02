@@ -42,5 +42,20 @@ function solve() {
     console.log('added');
   }
 
- document.querySelector('button').addEventListener('click', addFurniture)
+  function buy() {
+    let allChecks = document.querySelectorAll('input');
+    let names = [];
+    let tottalPrice = 0;
+    for (let check of allChecks) {
+      if (check.checked == true) {
+        names.push(document.querySelectorAll('td p')[0].textContent);
+        tottalPrice += Number(document.querySelectorAll('td p')[1].textContent);
+      }
+    }
+    document.querySelectorAll('textarea')[1].value = 
+      `Bought furniture: ${names.join(', ')}\nTotal price: ${tottalPrice}`;
+  }
+
+ document.querySelector('button').addEventListener('click', addFurniture);
+ document.querySelectorAll('button')[1].addEventListener('click', buy);
 }
