@@ -11,12 +11,27 @@ function solve() {
       img.src = object.img;
       tdImage.appendChild(img);
       tr.appendChild(tdImage);  
+
       let tdName = document.createElement('td');
-      let p = document.createElement('p');
-      p.textContent = object.name;
-      tdName.appendChild(p);
+      let name = document.createElement('p');
+      name.textContent = object.name;
+      tdName.appendChild(name);
       tr.appendChild(tdName); 
+
+      let tdPrice = document.createElement('td');
+      let price = document.createElement('p');
+      price.textContent = object.price;
+      tdPrice.appendChild(price);
+      tr.appendChild(tdPrice); 
+
+      let tdDecoration = document.createElement('td');
+      let decoration = document.createElement('p');
+      decoration.textContent = object.decFactor;
+      tdDecoration.appendChild(decoration);
+      tr.appendChild(tdDecoration);
+
       document.querySelector('table').appendChild(tr);
+
     }
     console.log('added');
   }
