@@ -35,7 +35,7 @@ function solve() {
       tdCheck.appendChild(check);
       tr.appendChild(tdCheck);
 
-      document.querySelector('table').appendChild(tr);
+      document.querySelector('tbody').appendChild(tr);
     }
   }
 
