@@ -30,6 +30,12 @@ function solve() {
       tdDecoration.appendChild(decoration);
       tr.appendChild(tdDecoration);
 
+      let tdCheck = document.createElement('td');
+      let check = document.createElement('input');
+      check.type = 'checkbox';
+      tdCheck.appendChild(check);
+      tr.appendChild(tdCheck);
+
       document.querySelector('table').appendChild(tr);
 
     }
