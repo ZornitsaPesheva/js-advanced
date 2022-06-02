@@ -4,7 +4,6 @@ function solve() {
     let array = JSON.parse(value);
 
     for (let object of array) {
-      console.log(object.img);
       let tr = document.createElement('tr');
       let tdImage = document.createElement('td');
       let img = document.createElement('img');
@@ -37,23 +36,26 @@ function solve() {
       tr.appendChild(tdCheck);
 
       document.querySelector('table').appendChild(tr);
-
     }
-    console.log('added');
   }
 
   function buy() {
     let allChecks = document.querySelectorAll('input');
     let names = [];
     let tottalPrice = 0;
+    let allDEcFactor = 0
+    let count = 0;
     for (let check of allChecks) {
       if (check.checked == true) {
         names.push(document.querySelectorAll('td p')[0].textContent);
         tottalPrice += Number(document.querySelectorAll('td p')[1].textContent);
+        allDEcFactor += Number(document.querySelectorAll('td p')[2].textContent);
+        count ++;
       }
     }
+    let decfactor = (allDEcFactor / count).toFixed(1);
     document.querySelectorAll('textarea')[1].value = 
-      `Bought furniture: ${names.join(', ')}\nTotal price: ${tottalPrice}`;
+      `Bought furniture: ${names.join(', ')}\nTotal price: ${tottalPrice.toFixed(2)}\nAvarage decoration factor: ${decfactor}`;
   }
 
  document.querySelector('button').addEventListener('click', addFurniture);
