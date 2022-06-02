@@ -45,7 +45,7 @@ function solve() {
     let allChecks = document.querySelectorAll('input');
     let names = [];
     let tottalPrice = 0;
-    let allDEcFactor = 0
+    let allDEcFactor = 0;
     let count = 0;
     for (let check of allChecks) {
       if (check.checked == true) {
