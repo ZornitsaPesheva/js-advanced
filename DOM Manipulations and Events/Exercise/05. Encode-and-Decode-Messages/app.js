@@ -1,24 +1,25 @@
 function encodeAndDecodeMessages() {
+    let receiver = document.querySelectorAll('#main textarea')[1];
     function encode(e) {
-        let message = document.querySelector('#main textarea').value;
+        let sender = document.querySelector('#main textarea'); 
+        let message = sender.value;
         let array = [];
         for (let symbol of message) {
             let i = symbol.charCodeAt(0);   
             array.push(i + 1);
         }
         let encoded = String.fromCharCode(...array);
-        let receiver = document.querySelectorAll('#main textarea')[1];
         receiver.value = encoded;
+        sender.value = '';
     }
     function decode(e) {
-        let message = document.querySelectorAll('#main textarea')[1].value;
+        let message = receiver.value;
         let array = [];
         for (let symbol of message) {
             let i = symbol.charCodeAt(0);   
             array.push(i - 1);
         }
         let decoded = String.fromCharCode(...array);
-        let receiver = document.querySelectorAll('#main textarea')[1];
         receiver.value = decoded;
     }
     document.querySelector('button').addEventListener('click', encode);
