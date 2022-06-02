@@ -19,13 +19,13 @@ function solve() {
   
         let tdPrice = document.createElement('td');
         let price = document.createElement('p');
-        price.textContent = object.price;
+        price.textContent = Number(object.price);
         tdPrice.appendChild(price);
         tr.appendChild(tdPrice); 
   
         let tdDecoration = document.createElement('td');
         let decoration = document.createElement('p');
-        decoration.textContent = object.decFactor;
+        decoration.textContent = Number(object.decFactor);
         tdDecoration.appendChild(decoration);
         tr.appendChild(tdDecoration);
   
@@ -42,23 +42,19 @@ function solve() {
    
 
   function buy() {
-    let allChecks = document.querySelectorAll('input');
+    let allChecks = Array.from(document.querySelectorAll('tbody input')).filter(c => c.checked);
     let names = [];
     let tottalPrice = 0;
     let allDEcFactor = 0;
-    let count = 0;
     for (let check of allChecks) {
-      if (check.checked == true) {
-        let furniture = check.parentElement.parentElement;
-        names.push(furniture.querySelectorAll('td p')[0].textContent);
-        tottalPrice += Number(furniture.querySelectorAll('td p')[1].textContent);
-        allDEcFactor += Number(furniture.querySelectorAll('td p')[2].textContent);
-        count ++;
-      }
+      let furniture = check.parentElement.parentElement;
+      names.push(furniture.querySelectorAll('p')[0].textContent);
+      tottalPrice += Number(furniture.querySelectorAll('p')[1].textContent);
+      allDEcFactor += Number(furniture.querySelectorAll('p')[2].textContent);
     }
-    let decfactor = (allDEcFactor / count).toFixed(1);
+    let decfactor = (allDEcFactor / allChecks.length);
     document.querySelectorAll('textarea')[1].value = 
-      `Bought furniture: ${names.join(', ')}\nTotal price: ${tottalPrice.toFixed(2)}\nAverage decoration factor: ${decfactor}`;
+      `Bought furniture: ${names.join(', ')}\r\nTotal price: ${tottalPrice.toFixed(2)}\r\nAverage decoration factor: ${decfactor}`;
   }
 
  document.querySelector('button').addEventListener('click', addFurniture);
