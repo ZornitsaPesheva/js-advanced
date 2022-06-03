@@ -21,6 +21,20 @@ function solve() {
             Number(firstRow.querySelectorAll('td input')[2].value)
             + Number(secondRow.querySelectorAll('td input')[2].value)
             + Number(tirthRow.querySelectorAll('td input')[2].value);
+        if (sum == firstColumnSum && 
+            firstColumnSum == secondColumnSum &&
+            secondColumnSum == tirthColumnSum) {
+                document.querySelector('#check p').textContent =
+                "You solve it! Congratulations!";
+                document.querySelector('#check p').style.color = 'green';
+                document.querySelector('table').style.border = "2px solid green";
+        }
+        else {
+            document.querySelector('#check p').textContent =
+                "NOP! You are not done yet...";
+            document.querySelector('#check p').style.color = 'red';
+            document.querySelector('table').style.border = "2px solid red";
+        }
     }
 
     checkBtn.addEventListener('click', check);
