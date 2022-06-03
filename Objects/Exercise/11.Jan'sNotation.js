@@ -2,11 +2,16 @@ function jsnsNotation(array){
     let numbers = [];
 
     function operate(a, b, operator) {
-        switch ()
+        switch (operator) {
+            case '+': return a + b; 
+            case '-': return a - b;
+            case '*': return a * b;
+            case '/': return a / b;
+         }
     }
 
     for(let i = 0; i < array.length; i++){
-        if (typeof array[i] == number){
+        if (typeof array[i] == Number){
             numbers.push(array[i])
         }
         else {
