@@ -21,7 +21,9 @@ function solve() {
             Number(firstRow.querySelectorAll('td input')[2].value)
             + Number(secondRow.querySelectorAll('td input')[2].value)
             + Number(tirthRow.querySelectorAll('td input')[2].value);
+            console.log(sum);
         if (sum == firstColumnSum && 
+            sum != 0 &&
             firstColumnSum == secondColumnSum &&
             secondColumnSum == tirthColumnSum) {
                 document.querySelector('#check p').textContent =
@@ -48,7 +50,7 @@ function solve() {
         secondRow.querySelectorAll('td input')[2].value = '';
         tirthRow.querySelectorAll('td input')[2].value = '';
         document.querySelector('table').style.border = '';
-        document.querySelector('#check p').textContent = '';
+        document.querySelector('#check p').textContent = ''
     }
 
     checkBtn.addEventListener('click', check);
