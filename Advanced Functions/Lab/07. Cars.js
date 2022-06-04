@@ -3,39 +3,37 @@ function createModify(input) {
 
     let r = {
         create: (rest) => {
-            let instruction = rest.split(' ');
-            if (instruction.length == 1) {
+            if (rest.length == 1) {
                 let car = {};
-                car.name = instruction[0];
+                car.name = rest[0];
                 cars.push(car);
             }
             else {
-                let oldCar = cars.find(c => c.name == instruction[2]) 
+                let oldCar = cars.find(c => c.name == rest[2]) 
                 let car = Object.assign({}, oldCar)
                 cars.push(car);
             }
         },
 
         set: (rest) => {
-            let instruction = rest.split(' ');
-            let car = cars.find(c => c.name == instruction[0]);
-            car[instruction[1]] = instruction[2];
+            let car = cars.find(c => c.name == rest[0]);
+            car[rest[1]] = rest[2];
+        },
+
+        print: (rest) => {
+            console.log(cars.find(c => c.name == rest[0]));
         }
 
     }
 
-    objects.forEach(element => {
-        let [command, ...rest] = element.split(' ');
-        result = r[command](result, rest);
+    input.forEach(el => {
+        let [command, ...rest] = el.split(' ');
+        console.log(rest);
+        result = r[command](rest);
+        
     });
 
 
-
-
-
-    function create() {
-
-    }
 }
 
 createModify([
