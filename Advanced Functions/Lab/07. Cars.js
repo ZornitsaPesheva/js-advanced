@@ -11,28 +11,36 @@ function createModify(input) {
             else {
                 let oldCar = cars.find(c => c.name == rest[2]) 
                 let car = Object.assign({}, oldCar)
+                car.name = rest[0];
                 cars.push(car);
             }
+            
         },
 
         set: (rest) => {
             let car = cars.find(c => c.name == rest[0]);
-            car[rest[1]] = rest[2];
+            let property = rest[1];
+            car[property] = rest[2];
         },
 
         print: (rest) => {
-            console.log(cars.find(c => c.name == rest[0]));
+            let car = cars.find(c => c.name == rest[0]);
+            let result = [];
+            for (const prop in car) {
+                if (prop != 'name') {
+                    result.push(`${prop}:${car[prop]}`);
+                }
+            }
+            console.log(result.join(','))
         }
 
     }
 
     input.forEach(el => {
         let [command, ...rest] = el.split(' ');
-        console.log(rest);
         result = r[command](rest);
         
     });
-
 
 }
 
