@@ -1,6 +1,11 @@
 function createModify(input) {
     const cars = [];
 
+
+    function inheritCar(oldCar, newCar) {
+
+    }
+
     let r = {
         create: (rest) => {
             if (rest.length == 1) {
@@ -10,8 +15,9 @@ function createModify(input) {
             }
             else {
                 let oldCar = cars.find(c => c.name == rest[2]) 
-                let car = Object.assign({}, oldCar)
+                let car = Object.assign({}, oldCar);
                 car.name = rest[0];
+                car.inherit = rest[2];
                 cars.push(car);
             }
             
@@ -26,9 +32,22 @@ function createModify(input) {
         print: (rest) => {
             let car = cars.find(c => c.name == rest[0]);
             let result = [];
+            let inheritance = cars.find(c => c.inherit != undefined);
+            let props = [];
             for (const prop in car) {
-                if (prop != 'name') {
-                    result.push(`${prop}:${car[prop]}`);
+                if (inheritance) {
+                    let inheritedCar = cars.find(c => c.name == car[prop]);
+                    for (const p in inheritedCar) {
+                        if (p != 'name' && p != 'inherit') {
+                            result.push(`${p}:${inheritedCar[p]}`);
+                            props.push(p);
+                        }
+                    }
+                }
+                if (prop != 'name' && prop != 'inherit') {
+                    if (!props.includes(prop)) {
+                        result.push(`${prop}:${car[prop]}`);
+                    }
                 }
             }
             console.log(result.join(','))
