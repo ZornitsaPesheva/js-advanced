@@ -4,14 +4,14 @@ function solve() {
 
     const [mName, hall, price] = inputs;
 
-    console.log([mName, hall, price]);
+  
 
     let onScreenBtn= document.getElementsByTagName('button')[0];
 
 
     onScreenBtn.addEventListener('click', addMovie);
 
-    function addMovie() {
+    function addMovie(e) {
         e.preventDefault();
         // console.log(document.querySelectorAll('input'));
 
@@ -20,7 +20,7 @@ function solve() {
 
         // console.log(mName.value);
          if (mName.value != '' && hall.value != '' && price.value != '' && !isNaN(Number(price.value))) {
-
+            console.log([mName, hall, price]);
             let span = document.createElement('span');
             span.textContent = mName;
             let strong = document.createElement('strong');
@@ -37,7 +37,7 @@ function solve() {
             div.appendChild(input);
             div.appendChild(btn);
     
-            let ul = document.querySelector('section ul');
+            let ul = document.querySelector('#movies ul');
             let li = document.createElement('li');
             li.appendChild(span);
             li.appendChild(strong);
