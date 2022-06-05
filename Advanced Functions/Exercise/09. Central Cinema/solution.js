@@ -13,36 +13,30 @@ function solve() {
 
     function addMovie(e) {
         e.preventDefault();
-        // console.log(document.querySelectorAll('input'));
+        if (mName.value != '' && hall.value != '' && price.value != '' && !isNaN(Number(price.value))) {
+        console.log([mName, hall, price]);
+        let span = document.createElement('span');
+        span.textContent = mName.value;
+        let strong = document.createElement('strong');
+        strong.textContent = hall.value;
+        
+        let strongInDiv = document.createElement('strong');
+        strongInDiv.textContent = Number(price.value).toFixed(2); 
+        let input = document.createElement('input');
+        input.setAttribute('placeholder', 'Tickets Sold');
+        let btn = document.createElement('button');
+        btn.textContent = 'Archive';
+        let div = document.createElement('div');
+        div.appendChild(strongInDiv);
+        div.appendChild(input);
+        div.appendChild(btn);
 
-
-        // console.log(inputs);
-
-        // console.log(mName.value);
-         if (mName.value != '' && hall.value != '' && price.value != '' && !isNaN(Number(price.value))) {
-            console.log([mName, hall, price]);
-            let span = document.createElement('span');
-            span.textContent = mName;
-            let strong = document.createElement('strong');
-            strong.textContent = hall;
-            
-            let strongInDiv = document.createElement('strong');
-            strongInDiv.textContent = Number(price.value).toFixed(2); 
-            let input = document.createElement('input');
-            input.setAttribute('placeholder', 'Tickets Sold');
-            let btn = document.createElement('button');
-            btn.textContent = 'Archive';
-            let div = document.createElement('div');
-            div.appendChild(strongInDiv);
-            div.appendChild(input);
-            div.appendChild(btn);
-    
-            let ul = document.querySelector('#movies ul');
-            let li = document.createElement('li');
-            li.appendChild(span);
-            li.appendChild(strong);
-            li.appendChild(div);
-            ul.appendChild(li);
+        let ul = document.querySelector('#movies ul');
+        let li = document.createElement('li');
+        li.appendChild(span);
+        li.appendChild(strong);
+        li.appendChild(div);
+        ul.appendChild(li);
         }
 
     }
