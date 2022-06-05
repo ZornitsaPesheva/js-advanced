@@ -1,46 +1,22 @@
 function displayInfo(...arguments) {
-    const list = [];
-    const unique = {};
+
+    let data = {};
 
     [...arguments].forEach( a => {
-        let argument = {};
-        
-        if (typeof a == 'object') {
-            argument[typeof a] = '';
+        let type = typeof a;
+        console.log(`${type}: ${a}`);
 
+        if(!data[type]) {
+            data[type] = 0;
         }
-        else {
-            argument[typeof a] = a.toString();
-        }
-        
-        
-        
-        list.push(argument);
-        if (unique.hasOwnProperty(typeof a)) {
-            unique[typeof a] += 1;
-        }
-        else {
-            unique[typeof a] = 1;
-        }
-    });
-    
-    list.forEach(el => {
-        console.log(`${Object.keys(el)}: ${Object.values(el)}`);
-    });
-    
-    let sorted = [];
-    for (var prop in unique) {
-        sorted.push([prop, unique[prop]]);
-    }
-    
-    sorted.sort(function(a, b) {
-        return b[1] - a[1];
-    });
 
-    sorted.forEach(el => {
-            console.log(`${el[0]} = ${el[1]}`);
-        });
+        data[type]++;
+    });
+    
+    Object.keys(data)
+    .sort((a, b) => data[b] - data[a])
+    .forEach((key) => console.log(`${key} = ${data[key]}`))
 }
 
-//displayInfo('cat','dog', 42, function () { console.log('Hello world!'); })
-displayInfo({ name: 'bob'}, 3.333, 9.999);
+displayInfo( 42, 52, 'cat','dog', function () { console.log('Hello world!'); })
+//displayInfo({ name: 'bob'}, 3.333, 9.999);
