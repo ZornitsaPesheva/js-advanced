@@ -1,6 +1,6 @@
 function solution() {
     
-    let library = {
+    const recipes = {
         apple: {
             carbohydrate: 1,
             flavour: 2
@@ -27,17 +27,35 @@ function solution() {
         }
     }
 
+    const storage = {
+        carbohydrate: 0,
+        flavour: 0,
+        fat: 0,
+        protein: 0
+    }
+
     const func = {
         restock: (arg1, arg2) => {
-          return `Success`;
+            storage[arg1] += arg2;
+            return `Success`;
+        },
+        prepare: (arg1, arg2) => {
+
+            let recipe = recipes[arg1];
+            for (let r in recipe) {
+                let outOfStorage = recipe[r] * arg1;
+                if (storage[r] > outOfStorage) {
+                    return 'Success'
+                }
+                else {
+                    return `Error: not enough ${r} in stock`;
+                }
+            }
         }
     }
 
     function doSomething(input) {
         let args = input.split(' ');
-        console.log(args[0]);
-        console.log(args[1]);
-        console.log(args[2]);
         return func[args[0]](args[1], args[2]);
 
     }
@@ -47,7 +65,11 @@ function solution() {
 
 let manager = solution();
 
-console.log(manager("restock flavour 50")); // Success
+console.log(manager("'restock carbohydrate 10")); // Success
 
-//console.log(manager("prepare lemonade 4")); // Error: not enough carbohydrate in
+console.log(manager("restock flavour 10")); // Error: not enough carbohydrate in
 
+console.log(manager("prepare apple 1"));
+console.log(manager("restock fat 10"));
+console.log(manager("prepare burger 1"));
+console.log(manager('report', 'protein=0 carbohydrate=4 fat=3 flavour=5'));
