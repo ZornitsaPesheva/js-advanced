@@ -4,6 +4,7 @@ function solve() {
     const [mName, hall, price] = inputs;
     let onScreenBtn= document.getElementsByTagName('button')[0];
     onScreenBtn.addEventListener('click', addMovie);
+    let clearElement = document.querySelectorAll('button')[1];
     let ulElement = document.querySelector('ul');
     let ulElement2 = document.querySelectorAll('ul')[1];
 
@@ -11,14 +12,14 @@ function solve() {
     function addMovie(e) {
         e.preventDefault();
         if (mName.value != '' && hall.value != '' && price.value != '' && !isNaN(Number(price.value))) {
-            console.log([mName, hall, price]);
             let span = document.createElement('span');
             span.textContent = mName.value;
             let strong = document.createElement('strong');
-            strong.textContent = hall.value;
+            strong.textContent = 'Hall: ' + hall.value;
             
             let strongInDiv = document.createElement('strong');
-            strongInDiv.textContent = Number(price.value).toFixed(2); 
+            let tprice = Number(price.value).toFixed(2)
+            strongInDiv.textContent = tprice; 
             let input = document.createElement('input');
             input.setAttribute('placeholder', 'Tickets Sold');
             let btn = document.createElement('button');
@@ -34,16 +35,17 @@ function solve() {
             li.appendChild(strong);
             li.appendChild(div);
             ul.appendChild(li);
-            mName.value != ''; hall.value != ''; price.value != ''
-            btn.addEventListener('click', (e) => archive(e, input.value, mName,price));
+            mName.value = ''; hall.value = ''; price.value = '';
+            btn.addEventListener('click', (e) => archive(e, input.value, span.textContent  ,tprice));
+            
         }
 
-        function archive(e,value, mName){
+        function archive(e,value, movieName,ticketPrice){
             if (value !== ""){
                 e.target.parentNode.parentNode.remove();
                 let liElement = creatingElements('li', "", ulElement2);
-                creatingElements('span', mName.value, liElement)
-                creatingElements('strong', `Total amount: ${(price.value*value).toFixed(2)}`, liElement);
+                creatingElements('span', movieName, liElement)
+                creatingElements('strong', `Total amount: ${(ticketPrice*value).toFixed(2)}`, liElement);
                 let deleteButton = creatingElements('button', 'Delete', liElement)
                 deleteButton.addEventListener('click', (e) => e.target.parentNode.parentNode.remove())
             }
@@ -58,5 +60,18 @@ function solve() {
             return newElement
         }
 
+        clearElement.addEventListener('click', (e) => {
+ 
+            let elements = Array.from(ulElement2.children)
+            if(elements.length > 1){
+                for (let i = 0; i < elements.length; i++){
+                    let child = elements[i]
+ 
+                    child.remove()
+                }
+            }else if(elements.length == 1){
+                elements[0].remove()
+            }
+        })
     }
 }
