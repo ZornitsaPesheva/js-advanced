@@ -47,7 +47,7 @@ function solve() {
                 creatingElements('span', movieName, liElement)
                 creatingElements('strong', `Total amount: ${(ticketPrice*value).toFixed(2)}`, liElement);
                 let deleteButton = creatingElements('button', 'Delete', liElement)
-                deleteButton.addEventListener('click', (e) => e.target.parentNode.parentNode.remove())
+                deleteButton.addEventListener('click', (e) => e.target.parentNode.remove())
             }
         }
 
