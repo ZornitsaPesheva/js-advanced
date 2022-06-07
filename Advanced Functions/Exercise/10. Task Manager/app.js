@@ -4,11 +4,11 @@ function solve() {
         description: document.getElementById('description'),
         date: document.getElementById('date')
     }
-
+    const [_, openSection, progressSection, finisgSection] = Array.from(document.querySelectorAll('section'));
     document.getElementById('add').addEventListener('click',  addTask);
     function addTask(event) {
         event.preventDefault();
-
+        // create element
         const article = document.createElement('article');
         article.appendChild(createElement('h3', input.name.value));
         article.appendChild(createElement('p', `Description: ${input.description.value}`));
@@ -18,6 +18,10 @@ function solve() {
         div.appendChild(createElement('button', 'Delete', 'red'));
         article.appendChild(div);
 
+        // append to open section
+        openSection.appendChild(article);
+
+        Object.values(input).forEach(i => i.value = '');
         //
     }
 
@@ -25,7 +29,7 @@ function solve() {
         const element = document.createElement(type);
         element.textContent = content;
         if (className) {
-            element.classNAme = className;
+            element.className = className;
         }
         return element;
     }
