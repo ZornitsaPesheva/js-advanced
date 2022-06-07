@@ -8,6 +8,7 @@ function solve() {
     content: document.getElementById('post-content')
   } 
   let review = document.getElementById('review-list');
+  let edit = document.getElementById
   publishBtn.addEventListener('click', publish);
 
   function publish() {
@@ -16,8 +17,13 @@ function solve() {
       review.appendChild(li);
       let article = createElement('article');
       li.appendChild(article);
-      li.appendChild(createElement('button', 'Edit', 'action-btn edit'));
-      li.appendChild(createElement('button', 'Edit', 'action-btn approve'));
+      let edit = createElement('button', 'Edit', 'action-btn edit');
+      edit.addEventListener('click', edit);
+      let approve = createElement('button', 'Approve', 'action-btn approve');
+      approve.addEventListener('click', approve);
+      li.appendChild(edit);
+      li.appendChild(approve);
+
       article.appendChild(createElement('h4', input.title.value));
       article.appendChild(createElement('p', 'Category ' + input.category.value));
       article.appendChild(createElement('h4', 'Content: ' + input.content.value));
@@ -31,6 +37,13 @@ function solve() {
         element.className = className;
     }
     return element;
-}
+  }
+
+  function edit(e) {
+    let currentArticle = e.previousSibling;
+    input.title.value = e.previousSibling.querySelector('h4')[0];
+    input.category.value = e.previousSibling.querySelector('p')[0];
+    input.title.value = e.previousSibling.querySelector('h4')[1];
+  }
   //TODO ...
 }
