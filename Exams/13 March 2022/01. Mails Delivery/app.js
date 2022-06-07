@@ -38,13 +38,13 @@ function solve() {
             div.id = 'list-action';
             li.appendChild(div);
             let sendBtn = createElement('button', 'Send');
-            sendBtn.id = 'send';
             sendBtn.type = 'submit';
+            sendBtn.id = 'send';
             sendBtn.addEventListener('click', send);
             div.appendChild(sendBtn);
             let deletedBtn = createElement('button', 'Delete');
-            deletedBtn.id = 'delete';
             deletedBtn.type = 'submit';
+            deletedBtn.id = 'delete';
             deletedBtn.addEventListener('click', deleteEmailfromList);
             div.appendChild(deletedBtn);
             recipientInput.value = '';
@@ -83,17 +83,18 @@ function solve() {
         e.preventDefault();
         let fromLi = e.target.parentNode.parentNode;
         let li = document.createElement('li');
-        console.log(fromLi.children);
         deleteList.appendChild(li);
         li.appendChild(createElement('span', 'To: ' + fromLi.children[1].textContent.slice(16)));
         li.appendChild(createElement('span', 'Title: ' + fromLi.children[0].textContent.slice(7)));
+        e.target.parentNode.parentNode.remove();
         
     }
     
     function deleteEmailfromSent(e) {
         e.preventDefault();
         let fromLi = e.target.parentNode.parentNode;
-        fromLi.children[2].remove();
+       // e.target.parentNode.parentNode.remove();
+       fromLi.children[2].remove();
         deleteList.appendChild(fromLi);
 
     }
