@@ -32,8 +32,11 @@ function solve() {
             li.appendChild(div);
             let sendBtn = createElement('button', 'Send');
             sendBtn.id = 'send';
+            div.appendChild(sendBtn);
             let deletedBtn = createElement('button', 'delete');
             deletedBtn.id = 'delete';
+            div.appendChild(deletedBtn);
+
         }
     }
 
