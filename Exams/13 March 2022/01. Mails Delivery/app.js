@@ -29,6 +29,7 @@ function solve() {
             li.appendChild(createElement('h4', 'Recipient Name:' + recipient));
             li.appendChild(createElement('span', message));
             let div = createElement('div');
+            div.id = 'list-action';
             li.appendChild(div);
             let sendBtn = createElement('button', 'Send');
             sendBtn.id = 'send';
