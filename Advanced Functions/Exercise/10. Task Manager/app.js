@@ -4,7 +4,8 @@ function solve() {
         description: document.getElementById('description'),
         date: document.getElementById('date')
     }
-    const [_, openSection, progressSection, finisgSection] = Array.from(document.querySelectorAll('section'));
+    const [_, openSection, progressSection, finishSection] = Array.from(document.querySelectorAll('section'))
+        .map(e => e.children[1]);
     document.getElementById('add').addEventListener('click',  addTask);
     function addTask(event) {
         event.preventDefault();
@@ -12,10 +13,14 @@ function solve() {
         const article = document.createElement('article');
         article.appendChild(createElement('h3', input.name.value));
         article.appendChild(createElement('p', `Description: ${input.description.value}`));
-        article.appendChild(createElement('p', `Due Date: ${input.name.value}`));
+        article.appendChild(createElement('p', `Due Date: ${input.date.value}`));
         const div = createElement('div', '', 'flex');
-        div.appendChild(createElement('button', 'Start', 'green'));
-        div.appendChild(createElement('button', 'Delete', 'red'));
+
+        const startButton = createElement('button', 'Start', 'green');
+        const deleteButton = createElement('button', 'Delete', 'red');
+        const finishButton = createElement('button', 'Finish', 'orange');
+        div.appendChild(startButton);
+        div.appendChild(deleteButton);
         article.appendChild(div);
 
         // append to open section
@@ -23,6 +28,24 @@ function solve() {
 
         Object.values(input).forEach(i => i.value = '');
         //
+        startButton.addEventListener('click', onStart);
+        deleteButton.addEventListener('click', onDelete);
+        finishButton.addEventListener('click', onFinish);
+
+        function onDelete() {
+            article.remove();
+        }
+
+        function onStart() {
+            startButton.remove();
+            div.appendChild(finishButton);
+            progressSection.appendChild(article);
+        }
+
+        function onFinish() {
+            div.remove();
+            finishSection.appendChild(article);
+        }
     }
 
     function createElement(type, content, className) {
