@@ -45,7 +45,7 @@ function solve() {
             let deletedBtn = createElement('button', 'Delete');
             deletedBtn.id = 'delete';
             deletedBtn.type = 'submit';
-            deletedBtn.addEventListener('click', deleteEmail);
+            deletedBtn.addEventListener('click', deleteEmailfromList);
             div.appendChild(deletedBtn);
             recipientInput.value = '';
             titletInput.value = '';
@@ -66,7 +66,6 @@ function solve() {
         let data = targetLi.querySelectorAll('h4');
         let li = document.createElement('li');
         list.appendChild(li);
-        console.log(data[1].textContent.split(16));
         li.appendChild(createElement('span', 'To: ' + (data[1].textContent).slice(16)));
         li.appendChild(createElement('span', 'Title: ' + (data[0].textContent).slice(7)));
         let div = createElement('div');
@@ -74,31 +73,29 @@ function solve() {
         li.appendChild(div);
         let btn = createElement('button', 'Delete', 'delete');
         btn.type = "submit";
-        btn.addEventListener('click', deleteEmail);
+        btn.addEventListener('click', deleteEmailfromSent);
         div.appendChild(btn);
         sentList.appendChild(li);
         targetLi.remove();
     }
 
-    function deleteEmail(e) {
+    function deleteEmailfromList(e) {
         e.preventDefault();
-        let targetLi = e.target.parentNode.parentNode;
-        let data = targetLi.children;
-
+        let fromLi = e.target.parentNode.parentNode;
         let li = document.createElement('li');
+        console.log(fromLi.children);
         deleteList.appendChild(li);
-        if (targetLi.parentNode.className == 'sent-mails') {
+        li.appendChild(createElement('span', 'To: ' + fromLi.children[1].textContent.slice(16)));
+        li.appendChild(createElement('span', 'Title: ' + fromLi.children[0].textContent.slice(7)));
+        
+    }
+    
+    function deleteEmailfromSent(e) {
+        e.preventDefault();
+        let fromLi = e.target.parentNode.parentNode;
+        fromLi.children[2].remove();
+        deleteList.appendChild(fromLi);
 
-            li.appendChild(createElement('span', 'To: ' + data[0].textContent));
-            li.appendChild(createElement('span', 'Title: ' + data[1].textContent));
-        }
-        else {
-            li.appendChild(createElement('span', 'To: ' + (data[1].textContent).slice(16)));
-            li.appendChild(createElement('span', 'Title: ' + (data[0].textContent).slice(7)));
-
-        }
-
-        e.target.parentNode.parentNode.remove();
     }
 }
 solve()
