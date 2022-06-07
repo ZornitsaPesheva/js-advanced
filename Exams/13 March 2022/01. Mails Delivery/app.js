@@ -1,5 +1,7 @@
 function solve() {
-
+    let recipientInput = document.getElementById('recipientName');
+    let titletInput = document.getElementById('title');
+    let messagetInput = document.getElementById('message');
 
     let addBtn = document.getElementById('add');
     let resetBtn = document.getElementById('reset');
@@ -20,9 +22,9 @@ function solve() {
       }
 
     function addFunction(e) {
-        let recipient = document.getElementById('recipientName').value;
-        let title = document.getElementById('title').value;
-        let message = document.getElementById('message').value;
+        let recipient = recipientInput.value;
+        let title = titletInput.value;
+        let message = messagetInput.value;
     
         e.preventDefault();
         if (recipient != '' && title != '' && message != '') {
@@ -46,8 +48,11 @@ function solve() {
         }
     }
 
-    function resetFunction() {
-
+    function resetFunction(e) {
+        e.preventDefault();
+        recipientInput.value = '';
+        titletInput.value = '';
+        messagetInput.value = '';
     }
 
 
