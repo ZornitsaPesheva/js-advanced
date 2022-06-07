@@ -2,6 +2,7 @@ window.addEventListener("load", solve);
 
 function solve() {
   const publishBtn = document.getElementById('publish-btn');
+  const clearBtn = document.getElementById('clear-btn');
   const input = {
     title: document.getElementById('post-title'),
     category: document.getElementById('post-category'),
@@ -9,9 +10,10 @@ function solve() {
   } 
   let review = document.getElementById('review-list');
   publishBtn.addEventListener('click', publish);
+  clearBtn.addEventListener('click', clearUploaded);
   let published = document.getElementById('published-list');
 
-  function publish() {
+  function publish(e) {
     if (input.title.value != '' && input.category.value != '' && input.content.value != '') {
       let li = document.createElement('li');
       review.appendChild(li);
@@ -58,6 +60,9 @@ function solve() {
     btn2.remove();
     published.appendChild(currentArticle);
   }
+  
+  function clearUploaded() {
+    published.innerHTML = '';
 
-  //TODO ...
+  }
 }
