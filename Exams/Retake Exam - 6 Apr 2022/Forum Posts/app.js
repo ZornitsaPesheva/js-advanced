@@ -15,16 +15,17 @@ function solve() {
 
   function publish(e) {
     if (input.title.value != '' && input.category.value != '' && input.content.value != '') {
-      let li = document.createElement('li');
+      let li = createElement('li', '', 'rpost');
       review.appendChild(li);
       let article = createElement('article');
       li.appendChild(article);
+      
       let edit = createElement('button', 'Edit', 'action-btn edit');
       edit.addEventListener('click', editPost);
       let approve = createElement('button', 'Approve', 'action-btn approve');
       approve.addEventListener('click', approvePost);
-      li.appendChild(edit);
       li.appendChild(approve);
+      li.appendChild(edit);
 
       article.appendChild(createElement('h4', input.title.value));
       article.appendChild(createElement('p', 'Category: ' + input.category.value));
@@ -46,10 +47,12 @@ function solve() {
   }
 
   function editPost(e) {
-    let currentArticle = e.target.previousSibling;
-    input.title.value = currentArticle.querySelectorAll('h4')[0].textContent;
+    let currentArticle = e.target.previousSibling.previousSibling;
+    console.log(currentArticle);
+
+    input.title.value = currentArticle.querySelector('h4').textContent;
     console.log(input.title.value);
-    input.category.value = currentArticle.querySelector('p').textContent.slice(10);
+    input.category.value = currentArticle.querySelectorAll('p')[0].textContent.slice(10);
     console.log(input.category.value);
     input.content.value = currentArticle.querySelectorAll('p')[1].textContent.slice(9);
     console.log(input.content.value);
