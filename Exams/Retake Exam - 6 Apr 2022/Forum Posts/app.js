@@ -9,6 +9,7 @@ function solve() {
   } 
   let review = document.getElementById('review-list');
   publishBtn.addEventListener('click', publish);
+  let published = document.getElementById('published-list');
 
   function publish() {
     if (input.title.value != '' && input.category.value != '' && input.content.value != '') {
@@ -19,7 +20,7 @@ function solve() {
       let edit = createElement('button', 'Edit', 'action-btn edit');
       edit.addEventListener('click', editPost);
       let approve = createElement('button', 'Approve', 'action-btn approve');
-      approve.addEventListener('click', approve);
+      approve.addEventListener('click', approvePost);
       li.appendChild(edit);
       li.appendChild(approve);
 
@@ -46,7 +47,17 @@ function solve() {
     input.title.value = currentArticle.querySelectorAll('h4')[0].textContent;
     input.category.value = currentArticle.querySelector('p').textContent.slice(10);
     input.content.value = currentArticle.querySelectorAll('h4')[1].textContent.slice(9);
-    currentArticle.remove();
+    currentArticle.parentNode.remove();
   }
+
+  function approvePost(e) {
+    let currentArticle = e.target.parentNode;
+    let btn1 = currentArticle.querySelectorAll('button')[0];
+    let btn2 = currentArticle.querySelectorAll('button')[1];
+    btn1.remove();
+    btn2.remove();
+    published.appendChild(currentArticle);
+  }
+
   //TODO ...
 }
