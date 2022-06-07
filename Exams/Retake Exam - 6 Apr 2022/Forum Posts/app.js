@@ -28,7 +28,7 @@ function solve() {
 
       article.appendChild(createElement('h4', input.title.value));
       article.appendChild(createElement('p', 'Category: ' + input.category.value));
-      article.appendChild(createElement('h4', 'Content: ' + input.content.value));
+      article.appendChild(createElement('p', 'Content: ' + input.content.value));
       input.title.value = '';
       input.category.value = '';
       input.content.value = '';
@@ -38,6 +38,7 @@ function solve() {
   function createElement(type, content, className) {
     const element = document.createElement(type);
     element.textContent = content;
+    console.log(element);
     if (className) {
         element.className = className;
     }
@@ -47,8 +48,12 @@ function solve() {
   function editPost(e) {
     let currentArticle = e.target.previousSibling;
     input.title.value = currentArticle.querySelectorAll('h4')[0].textContent;
+    console.log(input.title.value);
     input.category.value = currentArticle.querySelector('p').textContent.slice(10);
-    input.content.value = currentArticle.querySelectorAll('h4')[1].textContent.slice(9);
+    console.log(input.category.value);
+    input.content.value = currentArticle.querySelectorAll('p')[1].textContent.slice(9);
+    console.log(input.content.value);
+    
     currentArticle.parentNode.remove();
   }
 
