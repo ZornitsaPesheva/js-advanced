@@ -1,7 +1,5 @@
 function solve() {
-    let recipient = document.getElementById('recipientName').value;
-    let title = document.getElementById('title').value;
-    let message = document.getElementById('message').value;
+
 
     let addBtn = document.getElementById('add');
     let resetBtn = document.getElementById('reset');
@@ -21,8 +19,15 @@ function solve() {
         return element;
       }
 
-    function addFunction() {
+    function addFunction(e) {
+        let recipient = document.getElementById('recipientName').value;
+        let title = document.getElementById('title').value;
+        let message = document.getElementById('message').value;
+    
+        e.preventDefault();
         if (recipient != '' && title != '' && message != '') {
+            console.log(123);
+
             let li = document.createElement('li');
             list.appendChild(li);
             li.appendChild(createElement('h4', 'Title:' + title));
@@ -34,11 +39,15 @@ function solve() {
             let sendBtn = createElement('button', 'Send');
             sendBtn.id = 'send';
             div.appendChild(sendBtn);
-            let deletedBtn = createElement('button', 'delete');
+            let deletedBtn = createElement('button', 'Delete');
             deletedBtn.id = 'delete';
             div.appendChild(deletedBtn);
 
         }
+    }
+
+    function resetFunction() {
+
     }
 
 
