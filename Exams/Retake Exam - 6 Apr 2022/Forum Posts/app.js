@@ -8,7 +8,6 @@ function solve() {
     content: document.getElementById('post-content')
   } 
   let review = document.getElementById('review-list');
-  let edit = document.getElementById
   publishBtn.addEventListener('click', publish);
 
   function publish() {
@@ -18,15 +17,18 @@ function solve() {
       let article = createElement('article');
       li.appendChild(article);
       let edit = createElement('button', 'Edit', 'action-btn edit');
-      edit.addEventListener('click', edit);
+      edit.addEventListener('click', editPost);
       let approve = createElement('button', 'Approve', 'action-btn approve');
       approve.addEventListener('click', approve);
       li.appendChild(edit);
       li.appendChild(approve);
 
       article.appendChild(createElement('h4', input.title.value));
-      article.appendChild(createElement('p', 'Category ' + input.category.value));
+      article.appendChild(createElement('p', 'Category: ' + input.category.value));
       article.appendChild(createElement('h4', 'Content: ' + input.content.value));
+      input.title.value = '';
+      input.category.value = '';
+      input.content.value = '';
     }
   }
 
@@ -39,11 +41,12 @@ function solve() {
     return element;
   }
 
-  function edit(e) {
-    let currentArticle = e.previousSibling;
-    input.title.value = e.previousSibling.querySelector('h4')[0];
-    input.category.value = e.previousSibling.querySelector('p')[0];
-    input.title.value = e.previousSibling.querySelector('h4')[1];
+  function editPost(e) {
+    let currentArticle = e.target.previousSibling;
+    input.title.value = currentArticle.querySelectorAll('h4')[0].textContent;
+    input.category.value = currentArticle.querySelector('p').textContent.slice(10);
+    input.content.value = currentArticle.querySelectorAll('h4')[1].textContent.slice(9);
+    currentArticle.remove();
   }
   //TODO ...
 }
