@@ -19,7 +19,7 @@ describe('Symetry Checker', () => {
     });
 
     it ('works with symetric string array', () => {
-        expect(isSymmetric('a', 'b', 'b', 'a')).to.be.false;
+        expect(isSymmetric(['a', 'b', 'b', 'a'])).to.be.true;
     });
 
     it ('returns false for string param', () => {
