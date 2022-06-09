@@ -22,7 +22,7 @@ function validate() {
             invalidFields.push(userName)
         }
         let email = document.getElementById('email');
-        let emailPattern = /^[^@.]+@[^@]*\.[^@]+$/;
+        let emailPattern = /(.+)@(.+){2,}\.(.+){2,}/; 
 
         if (!emailPattern.test(email.value)) {
             invalidFields.push(email);
