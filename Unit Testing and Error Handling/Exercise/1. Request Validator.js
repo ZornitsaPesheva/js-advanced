@@ -3,26 +3,25 @@ function validate({method, uri, version, message}) {
     const versions = ['HTTP/0.9', 'HTTP/1.0', 'HTTP/1.1', 'HTTP/2.0'];
 
 
-    function containsSpecialChars(str) {
-        const specialChars = /[`'"\\,<>]/;
-        return specialChars.test(str);
-      }
+    const uriRegex = /(^[\w.]+$)/;
+    const messageRegex = /([<>\\&'"])/;
 
-    if (!methods.includes(method)) {
-        throw new Error(`Invalid request header: Invalid ${method}`);
+      
+    if (!method || !methods.includes(method)) {
+        throw new Error(`Invalid request header: Invalid Method`);
     }
 
 
-    else if (uri == '' && (uri != new RegExp('[A-z0-9]*\.[A-z0-9]+' || uri != '*'))) {
-        throw new Error(`Invalid request header: Invalid ${uri}`);
+    else if (uri == '' && (uriRegex.test(uri) || uri != '*')){
+        throw new Error(`Invalid request header: Invalid URI`);
     }
 
     else if (!versions.includes(version)) {
-        throw new Error(`Invalid request header: Invalid ${version}`);
+        throw new Error(`Invalid request header: Invalid Version`);
     }
 
-    else if (containsSpecialChars(message)) {
-        throw new Error(`Invalid request header: Invalid ${message}`);
+    else if (message == undefined || messageRegex.test(message)) {
+        throw new Error(`Invalid request header: Invalid Message`);
     }
 
     else return {method, uri, version, message};
@@ -30,12 +29,9 @@ function validate({method, uri, version, message}) {
 
 console.log(validate({
 
-    method: 'GET',
-    
-    uri: 'svn.public.catalog',
-    
+    method: 'OPTIONS',
+    uri: 'git.master',
     version: 'HTTP/1.1',
-    
-    message: ''
+    message: '-recursive'
     
     }));
