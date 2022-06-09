@@ -7,7 +7,7 @@ function createCalculator() {
     }
 }
 let calc = createCalculator();
-calc.add(Number('6'));
-console.log(calc.get());
+calc.value += 4; 
+console.log(calc.value);
 
 module.exports = { createCalculator }
