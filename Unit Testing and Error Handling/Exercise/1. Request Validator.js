@@ -12,7 +12,7 @@ function validate({method, uri, version, message}) {
     }
 
 
-    else if (uri == '' && (uriRegex.test(uri) || uri != '*')){
+    else if (!uri || uri == '' || !uriRegex.test(uri) || !uri == '*'){
         throw new Error(`Invalid request header: Invalid URI`);
     }
 
