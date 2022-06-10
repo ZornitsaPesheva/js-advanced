@@ -34,4 +34,7 @@ const bookSelection = {
   },
 };
 
+
+console.log(bookSelection.suitableTitles([{ title: "The Da Vinci Code", genre: "Thriller" }], 'Thriller'));
+
 module.exports = { bookSelection }
