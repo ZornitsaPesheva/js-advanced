@@ -7,12 +7,7 @@ describe('Rent Car', function () {
             expect(rentCar.searchCar(["Volkswagen", "BMW", "Audi"], 'Volkswagen'))
                 .to.deep.equal('There is 1 car of model Volkswagen in the catalog!')
         })
-        
-        it('check if shop data is array of strings', () => {
-            expect(function () {
-                rentCar.searchCar('fdgdf', 'Volkswagen').to.throw('Invalid input!')
-            })
-        })
+
         it('check if model value is array of strings', () => {
             expect(function () {
                 rentCar.searchCar(["Volkswagen", "BMW", 1], 'Volkswagen').to.throw('Invalid input!')
