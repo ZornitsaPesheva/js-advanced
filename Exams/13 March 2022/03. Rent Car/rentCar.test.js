@@ -32,7 +32,8 @@ describe('Rent Car', function () {
 
           it("test the model", () => {
             expect(function () {
-              rentCar.searchCar(["BMW", "BMW"], "OPEL")}).to.throw(`There are no such models in the catalog!`);
+              rentCar.searchCar(["BMW", "BMW"], "OPEL")
+            }).to.throw(`There are no such models in the catalog!`);
           });
         
     });
