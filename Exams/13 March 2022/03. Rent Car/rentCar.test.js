@@ -9,7 +9,9 @@ describe('Rent Car', function() {
         })
 
         it ('check if shop data is array of strings', () => {
-            expect(rentCar.searchCar('fdgdf', 'Volkswagen')).to.be.undefined;
+            expect(function() {
+                rentCar.searchCar('fdgdf', 'Volkswagen').to.throw('Invalid input!')
+            })
         })
     });
 
