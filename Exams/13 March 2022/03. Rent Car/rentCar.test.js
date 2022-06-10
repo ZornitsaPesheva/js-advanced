@@ -13,6 +13,17 @@ describe('Rent Car', function() {
                 rentCar.searchCar('fdgdf', 'Volkswagen').to.throw('Invalid input!')
             })
         })
+        it ('check if model value is a strings', () => {
+            expect(function() {
+                rentCar.searchCar(["Volkswagen", "BMW", 1], 'Volkswagen').to.throw('Invalid input!')
+            })
+        })
+
+        it ('return correct no matching models', () => {
+            expect(function() {
+                rentCar.searchCar(["Volkswagen", "BMW"], 'Nissan').to.throw('No such model in the catalog!')
+            })
+        })
     });
 
     describe('calculatePriceOfCar', function() {
