@@ -27,7 +27,16 @@ describe('Rent Car', function() {
     });
 
     describe('calculatePriceOfCar', function() {
-
+        it ('check if model is valid', () => {
+            expect(function() {
+                rentCar.searchCar(5, 5).to.throw('Invalid input!')
+            })
+        })
+        it ('check if days are valid', () => {
+            expect(function() {
+                rentCar.searchCar("Volkswagen", 'string').to.throw('Invalid input!')
+            })
+        })
     });
     
     describe('checkBudget', function() {
