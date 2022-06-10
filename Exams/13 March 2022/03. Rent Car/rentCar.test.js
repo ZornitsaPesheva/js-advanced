@@ -19,20 +19,13 @@ describe('Rent Car', function () {
             })
         })
         
-
-        it('return correct no matching models', () => {
-            expect(function () {
-                rentCar.searchCar(["Volkswagen", "BMW"], 'Nissan').to.throw('There are no such models in the catalog!')
-            })
-        })
-
         it("happy path for searchCar", () => {
             expect(rentCar.searchCar(["Volkswagen", "BMW", "Audi"], "Volkswagen")).to.equal("There is 1 car of model Volkswagen in the catalog!");
         });
 
           it("test the model", () => {
             expect(function () {
-              rentCar.searchCar(["BMW", "BMW"], "OPEL")
+              rentCar.searchCar(["Volkswagen", "BMW"], "Nissan")
             }).to.throw(`There are no such models in the catalog!`);
           });
         
