@@ -25,6 +25,9 @@ function solve() {
         div.appendChild(createElement('h4', 'Description of the problem: ', descritionField.value));
         div.appendChild(createElement('button', 'Start repair', '', 'start-btn', start));
         div.appendChild(createElement('button', 'Finish repair', '', 'finish-btn', finish, true));
+        nameField.value = '';
+        phoneField.value = '';
+        descritionField.value = '';
     }
 
     function createElement(el, text, content, elClass, evListener, disabled) {
@@ -58,7 +61,7 @@ function solve() {
 
     function clearAll() {
         let allComleted = document.getElementsByClassName('container');
-        for (i = 0; i < allComleted.length; i++) {
+        for (i = 0; i <= allComleted.length; i++) {
             allComleted[i].remove();
         }
     }
