@@ -51,19 +51,15 @@ function solve() {
     }
 
     function finish(e) {
-        let div = document.createElement('div');
-        div.classList.add('container');
-        div.appendChild(e.target.parentNode);
-        completedOrders.appendChild(div);
+        completedOrders.appendChild(e.target.parentNode);
         e.target.previousSibling.remove();
         e.target.remove();
     }
 
     function clearAll() {
-        let allComleted = document.getElementsByClassName('container');
-        for (i = 0; i <= allComleted.length; i++) {
-            allComleted[i].remove();
+        let allCompleted = document.querySelectorAll('#completed-orders div');
+        for (i = 0; i < allCompleted.length; i++) {
+            allCompleted[i].remove();
         }
     }
-
 }
