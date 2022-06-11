@@ -43,7 +43,6 @@ function solve() {
                 let row = e.target.parentNode.parentNode;
                 let cells = row.querySelectorAll('td');
                 let j = 0;
-                let salary = 0;
                 for (i = 0; i < cells.length - 1; i++ ){
                     console.log(inputs[j]);
                     inputs[j].value = cells[i].textContent;
