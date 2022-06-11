@@ -16,18 +16,20 @@ function solve() {
     clear.addEventListener('click', clearAll);
     
     function sendForm(e) {
-        e.preventDefault();
-        let div = document.createElement('div');
-        div.classList.add('container');
-        recievedOrders.appendChild(div);
-        div.appendChild(createElement('h2', 'Product type for repair: ', productType.value));
-        div.appendChild(createElement('h3', 'Client information: ', nameField.value + ', ' + phoneField.value));
-        div.appendChild(createElement('h4', 'Description of the problem: ', descritionField.value));
-        div.appendChild(createElement('button', 'Start repair', '', 'start-btn', start));
-        div.appendChild(createElement('button', 'Finish repair', '', 'finish-btn', finish, true));
-        nameField.value = '';
-        phoneField.value = '';
-        descritionField.value = '';
+        if (productType.value != '' && nameField.value != '' && phoneField.value != '' && descritionField.value != '') {
+            e.preventDefault();
+            let div = document.createElement('div');
+            div.classList.add('container');
+            recievedOrders.appendChild(div);
+            div.appendChild(createElement('h2', 'Product type for repair: ', productType.value));
+            div.appendChild(createElement('h3', 'Client information: ', nameField.value + ', ' + phoneField.value));
+            div.appendChild(createElement('h4', 'Description of the problem: ', descritionField.value));
+            div.appendChild(createElement('button', 'Start repair', '', 'start-btn', start));
+            div.appendChild(createElement('button', 'Finish repair', '', 'finish-btn', finish, true));
+            nameField.value = '';
+            phoneField.value = '';
+            descritionField.value = '';
+        }
     }
 
     function createElement(el, text, content, elClass, evListener, disabled) {
