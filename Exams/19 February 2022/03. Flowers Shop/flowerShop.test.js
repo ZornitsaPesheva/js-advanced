@@ -44,16 +44,15 @@ describe('Flower Shop', function () {
 
     describe('sellFlowers', function () {
 
-        it('returns correct if flower is not present', () => {
-            expect(flowerShop.sellFlowers(["Rose", "Lily", "Orchid"]))
-                .to.equal('The some flower are sold! You need to purchase more!')
+        it('returns correct result', () => {
+            expect(flowerShop.sellFlowers(["Rose", "Lily", "Orchid"], 1))
+                .to.equal('Rose / Orchid')
         })
 
-        it('returns correct if flower is present', () => {
-            expect(flowerShop.sellFlowers('Rose', ["Rose", "Lily", "Orchid"]))
-                .to.equal('The Rose are available!')
+        it('returns correct invalit input', () => {
+            expect( function() {
+                flowerShop.sellFlowers(2, 3).to.throw('Invalid input!');
+            })
         })
     })
-
-
 })
