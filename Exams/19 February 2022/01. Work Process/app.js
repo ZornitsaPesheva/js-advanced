@@ -25,6 +25,7 @@ function solve() {
             let btn1 = document.createElement('button');
             btn1.classList.add('fired');
             btn1.textContent = 'Fired';
+            btn1.addEventListener('click', fireFunc);
             let btn2 = document.createElement('button');
             btn2.classList.add('edit');
             btn2.textContent = 'Edit';
@@ -47,15 +48,21 @@ function solve() {
                     console.log(inputs[j]);
                     inputs[j].value = cells[i].textContent;
                     j++;
-                    if (i == cells.length - 2) {
-                        budget.textContent = (Number(budget.textContent) - cells[i].textContent)
-                        .toFixed(2);
-                    }
+                
                 }
-
+                budget.textContent = 
+                    (Number(budget.textContent) - cells[5].textContent).toFixed(2);
                 row.remove();
         }
-        
+
+        function fireFunc(e) {
+            e.preventDefault();
+            let row = e.target.parentNode.parentNode;
+            let cells = row.querySelectorAll('td');
+            budget.textContent = (Number(budget.textContent) - cells[5].textContent)
+            .toFixed(2);
+            row.remove();
+        }
     }
 }
 solve()
