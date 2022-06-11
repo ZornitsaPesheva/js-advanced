@@ -4,6 +4,7 @@ function solve() {
     let inputs = document.querySelectorAll('input');
     [fname, lname, email, birth, position, salary] = inputs;
     let tableBody = document.querySelector('tbody');
+    let budget = document.querySelector('span');
 
     function hireWprkerFunc(e) {
         e.preventDefault();
@@ -31,7 +32,6 @@ function solve() {
             td.appendChild(btn1);
             td.appendChild(btn2);
             tr.appendChild(td);
-            let budget = document.querySelector('span');
             budget.textContent = (Number(budget.textContent) + Number(salary))
                 .toFixed(2);
             
@@ -47,6 +47,10 @@ function solve() {
                     console.log(inputs[j]);
                     inputs[j].value = cells[i].textContent;
                     j++;
+                    if (i == cells.length - 2) {
+                        budget.textContent = (Number(budget.textContent) - cells[i].textContent)
+                        .toFixed(2);
+                    }
                 }
 
                 row.remove();
