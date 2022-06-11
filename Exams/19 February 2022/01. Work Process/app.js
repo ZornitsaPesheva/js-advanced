@@ -7,16 +7,18 @@ function solve() {
 
     function hireWprkerFunc(e) {
         e.preventDefault();
-        if(![...inputs].some(i => i.value == '')){
+        if(![inputs].some(i => i.value == '')){
+            let salary = 0;
             let tr = document.createElement('tr');
             tableBody.appendChild(tr);
             for (i = 0; i < inputs.length; i++) {
                 let td = document.createElement('td');
                 td.textContent = inputs[i].value;
-                console.log(td);
                 tr.appendChild(td);
+                if (inputs[i].id == 'salary'){
+                    salary = inputs[i].value;
+                }
                 inputs[i].value = '';
-
             }
             let td = document.createElement('td');
             let btn1 = document.createElement('button');
@@ -28,6 +30,8 @@ function solve() {
             td.appendChild(btn1);
             td.appendChild(btn2);
             tr.appendChild(td);
+            let budget = document.querySelector('span');
+            budget.textContent = Number(budget.textContent) + Number(salary);
             
         } 
         
