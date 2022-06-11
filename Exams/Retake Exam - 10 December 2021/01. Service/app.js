@@ -20,7 +20,7 @@ function solve() {
         let div = document.createElement('div');
         div.classList.add('container');
         recievedOrders.appendChild(div);
-        div.appendChild(createElement('h2', 'Product type for иepair: ', productType.value));
+        div.appendChild(createElement('h2', 'Product type for repair: ', productType.value));
         div.appendChild(createElement('h3', 'Client information: ', nameField.value + ', ' + phoneField.value));
         div.appendChild(createElement('h4', 'Description of the problem: ', descritionField.value));
         div.appendChild(createElement('button', 'Start repair', '', 'start-btn', start));
@@ -48,16 +48,16 @@ function solve() {
     }
 
     function finish(e) {
-        let div = document.createElement(div);
+        let div = document.createElement('div');
         div.classList.add('container');
-        div.appendChild(e.target.parentEleemt);
+        div.appendChild(e.target.parentNode);
         completedOrders.appendChild(div);
+        e.target.previousSibling.remove();
         e.target.remove();
-        e.target.parentEleemt.remove();
     }
 
     function clearAll() {
-        let allComleted = document.getElementsByClassName(container);
+        let allComleted = document.getElementsByClassName('container');
         for (i = 0; i < allComleted.length; i++) {
             allComleted[i].remove();
         }
