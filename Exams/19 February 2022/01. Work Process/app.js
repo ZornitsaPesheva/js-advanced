@@ -2,7 +2,6 @@ function solve() {
     let hireWorkerBtn = document.getElementById('add-worker');
     hireWorkerBtn.addEventListener('click', hireWprkerFunc);
     let inputs = document.querySelectorAll('input');
-    [fname, lname, email, birth, position, salary] = inputs;
     let tableBody = document.querySelector('tbody');
     let budget = document.querySelector('span');
 
