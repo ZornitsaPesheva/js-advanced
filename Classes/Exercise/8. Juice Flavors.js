@@ -8,8 +8,6 @@ function juiceFlavors(array) {
         if (juces.has(juceName)) {
             let qtt = juces.get(juceName) + Number(quantity);
             juces.set(juceName, qtt);
-            let q = juces.get(juceName) + Number(quantity);
-            juces.set(juceName, q)
         } else {
             juces.set(juceName, Number(quantity));
         }
@@ -32,12 +30,24 @@ function juiceFlavors(array) {
     }
 }
 
-juiceFlavors(['Orange => 2000',
+// juiceFlavors(['Orange => 2000',
 
-'Peach => 1432',
+// 'Peach => 1432',
 
-'Banana => 450',
+// 'Banana => 450',
 
-'Peach => 600',
+// 'Peach => 600',
 
-'Strawberry => 549']);
+// 'Strawberry => 549']);
+
+juiceFlavors(['Kiwi => 234',
+
+'Pear => 2345',
+
+'Watermelon => 3456',
+
+'Kiwi => 4567',
+
+'Pear => 5678',
+
+'Watermelon => 6789']);
