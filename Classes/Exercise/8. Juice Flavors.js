@@ -6,7 +6,7 @@ function juiceFlavors(array) {
     array.forEach(element => {
         let [juceName, quantity] = element.split(' => ');
         if (juces.has(juceName)) {
-            let qtt = juces.get(juceName + Number(quantity));
+            let qtt = juces.get(juceName) + Number(quantity);
             juces.set(juceName, qtt);
             let q = juces.get(juceName) + Number(quantity);
             juces.set(juceName, q)
@@ -23,7 +23,7 @@ function juiceFlavors(array) {
                 bottlesOfJuse.set(juceName, bottles);
             }
             let juseLeft = juces.get(juceName) % 1000;
-            juces.set(juces.get(juceName), juseLeft);
+            juces.set(juceName, juseLeft);
         } 
     });
 
