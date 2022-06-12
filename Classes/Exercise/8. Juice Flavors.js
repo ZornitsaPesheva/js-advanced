@@ -20,7 +20,7 @@ function juiceFlavors(array) {
                 let qb = bottlesOfJuse.get(juceName) + Number(bottles);
                 bottlesOfJuse.set(juceName, qb);
             } else {
-                bottlesOfJuse.set(juceName, 1);
+                bottlesOfJuse.set(juceName, bottles);
             }
             let juseLeft = juces.get(juceName) % 1000;
             juces.set(juces.get(juceName), juseLeft);
