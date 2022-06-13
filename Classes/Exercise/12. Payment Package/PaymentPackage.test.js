@@ -24,29 +24,9 @@ describe('PaymentPackage', function() {
     })
 
     describe('getting and setting vakues', function() {
-
-        it('Set value to null', () => {
-            let instance = new PaymentPackage('Name', 100);
-            assert.doesNotThrow(() => { instance.value = 0 })
-        });
-
-        it('get name', () => {
+        it('set value to null', () => {
             let flagClass = new PaymentPackage('abc', 123);
-            expect(flagClass.name).to.equal('abc');
-        });
-        it('get value', () => {
-            let flagClass = new PaymentPackage('abc', 123);
-            expect(flagClass.value).to.equal(123);
-        });
-
-        it('set name', () => {
-            let flagClass = new PaymentPackage('abc', 123);
-            expect(flagClass.name = 'def').to.equal(flagClass.name);
-        });
-        
-        it('set value', () => {
-            let flagClass = new PaymentPackage('abc', 123);
-            expect(flagClass.valu = 345).to.equal(345);
+            expect(flagClass.value = 0).to.equal(0);
         });
     })
 
