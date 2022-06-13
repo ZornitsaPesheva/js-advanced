@@ -9,24 +9,6 @@ describe('Flower Shop', function () {
             expect(flowerShop.calcPriceOfFlowers('some flower', 2, 3))
                 .to.equal('You need $6.00 to buy some flower!')
         })
-
-        it('returns invalid error for invalid flower', () => {
-            expect( function() {
-                flowerShop.calcPriceOfFlowers(2, 2, 3).to.throw('Invalid input!');
-            }) 
-        })
-
-        it('returns invalid error for invalid price', () => {
-            expect( function() {
-                flowerShop.calcPriceOfFlowers(2, 'string', 3).to.throw('Invalid input!');
-            }) 
-        })
-
-        it('returns invalid error for invalid price', () => {
-            expect( function() {
-                flowerShop.calcPriceOfFlowers(2, 3, 'string').to.throw('Invalid input!');
-            }) 
-        })
     })
     
     describe('checkFlowersAvailable', function () {
@@ -47,12 +29,6 @@ describe('Flower Shop', function () {
         it('returns correct result', () => {
             expect(flowerShop.sellFlowers(["Rose", "Lily", "Orchid"], 1))
                 .to.equal('Rose / Orchid')
-        })
-
-        it('returns correct invalit input', () => {
-            expect( function() {
-                flowerShop.sellFlowers(2, 3).to.throw('Invalid input!');
-            })
         })
     })
 })

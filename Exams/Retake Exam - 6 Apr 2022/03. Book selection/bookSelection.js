@@ -1,3 +1,6 @@
+// https://judge.softuni.org/Contests/Practice/DownloadResource/20582
+
+
 const bookSelection = {
   isGenreSuitable(genre, age) {
     if (age <= 12 && (genre === "Thriller" || genre === "Horror")) {
