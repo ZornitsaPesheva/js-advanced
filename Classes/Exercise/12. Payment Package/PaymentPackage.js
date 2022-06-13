@@ -70,11 +70,11 @@ module.exports = { PaymentPackage }
 
 // Should throw an error
 
-try {
-    const hrPack = new PaymentPackage('HR Services');
-} catch (err) {
-    console.log('Error: ' + err.message);
-}
+// try {
+//     const hrPack = new PaymentPackage('HR Services');
+// } catch (err) {
+//     console.log('Error: ' + err.message);
+// }
 
 const packages = [
     new PaymentPackage('HR Services', 1500),
@@ -86,8 +86,8 @@ console.log(packages.join('\n'));
 const wrongPack = new PaymentPackage('Transfer Fee', 100);
 
 // Should throw an error
-try {
-    wrongPack.active = null;
-} catch (err) {
-    console.log('Error: ' + err.message);
-}
+// try {
+//     wrongPack.active = null;
+// } catch (err) {
+//     console.log('Error: ' + err.message);
+// }

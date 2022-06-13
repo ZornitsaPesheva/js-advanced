@@ -24,6 +24,12 @@ describe('PaymentPackage', function() {
     })
 
     describe('getting and setting vakues', function() {
+
+        it('Set value to null', () => {
+            let instance = new PaymentPackage('Name', 100);
+            assert.doesNotThrow(() => { instance.value = 0 })
+        });
+
         it('get name', () => {
             let flagClass = new PaymentPackage('abc', 123);
             expect(flagClass.name).to.equal('abc');
@@ -37,7 +43,8 @@ describe('PaymentPackage', function() {
             let flagClass = new PaymentPackage('abc', 123);
             expect(flagClass.name = 'def').to.equal(flagClass.name);
         });
-        it('get value', () => {
+        
+        it('set value', () => {
             let flagClass = new PaymentPackage('abc', 123);
             expect(flagClass.valu = 345).to.equal(345);
         });
@@ -54,6 +61,14 @@ describe('PaymentPackage', function() {
             expect(() => flagClass.VAT = -20).to.throw('VAT must be a non-negative number');
         });
 
+        it('get VAT', () => {
+            let flagClass = new PaymentPackage('abc', 123);
+            expect(flagClass.VAT).to.equal(20);
+        });
+        it('set VAT', () => {
+            let flagClass = new PaymentPackage('abc', 123);
+            expect(flagClass.VAT = 10).to.equal(10);
+        });
         
     })
 
@@ -62,7 +77,30 @@ describe('PaymentPackage', function() {
             let flagClass = new PaymentPackage('abc', 123);
             expect(() => flagClass.active = 'abc').to.throw('Active status must be a boolean');
         });
+
+        it('get active', () => {
+            let flagClass = new PaymentPackage('abc', 123);
+            expect(flagClass.active).to.equal(true);
+        });
+        it('set active', () => {
+            let flagClass = new PaymentPackage('abc', 123);
+            expect(flagClass.active = false).to.equal(false);
+        });
     })
 
+    describe('toString()', function() {
+
+        it('test toString()', () => {
+            let flagClass = new PaymentPackage('abc', 123);
+            flagClass.VAT = 30;
+            flagClass.active = false;
+            let output = [
+                `Package: abc (inactive)`,
+                `- Value (excl. VAT): 123`,
+                `- Value (VAT 30%): 159.9`
+            ]
+            expect(flagClass.toString()).to.equal(output.join('\n'));
+        });
+    })
 
 })
