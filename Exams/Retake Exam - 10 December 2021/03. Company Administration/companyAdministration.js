@@ -1,3 +1,5 @@
+// https://judge.softuni.org/Contests/Practice/DownloadResource/18748
+
 const companyAdministration = {
 
     hiringEmployee(name, position, yearsExperience) {
