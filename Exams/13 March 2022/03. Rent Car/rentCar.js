@@ -50,4 +50,6 @@ const rentCar = {
     }
 }
 
+rentCar.searchCar(["Volkswagen", "BMW", 1], 1);
+
 module.exports = { rentCar };
