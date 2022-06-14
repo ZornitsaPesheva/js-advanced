@@ -4,6 +4,7 @@ function solve() {
     let addBtn = document.getElementById('add-btn');
     addBtn.addEventListener('click', addSong);
     let allHits = document.getElementsByClassName('all-hits-container')[0];
+    let savedHits = document.getElementsByClassName('saved-container')[0];
 
     let inputs = document.querySelectorAll('input');
 
@@ -41,8 +42,10 @@ function solve() {
         return element;
     }
 
-    function saveSong() {
-        
+    function saveSong(e) {
+        savedHits.appendChild(e.target.parentNode);
+        e.target.nextSibling.remove();
+        e.target.remove();
     }
 
     function likeSong(e) {
@@ -53,8 +56,7 @@ function solve() {
 
     }
 
-    function deleteSong() {
-        
+    function deleteSong(e) {
 
     }
 
