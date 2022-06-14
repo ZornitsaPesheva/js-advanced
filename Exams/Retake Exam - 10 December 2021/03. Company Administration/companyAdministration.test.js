@@ -17,17 +17,67 @@ describe('Company Administration', function() {
             expect(companyAdministration.hiringEmployee('John Smith', 'Programmer', 2))
                 .to.equal(`John Smith is not approved for this position.`);
         })
+        it ('check for missing parameters', () => {
+            expect(() => companyAdministration.hiringEmployee())
+            .to.throw("We are not looking for workers for this position.");
+        })
     })
 
     describe('calculateSalary', function() {
-        
         it ('returns correctly calculated salary', () => {
             expect(companyAdministration.calculateSalary(10))
                 .to.equal(150);
         })
-        it ('returns correctly calculated salary', () => {
+
+        it ('returns correctly calculated salary with bonus', () => {
             expect(companyAdministration.calculateSalary(200))
                 .to.equal(4000);
+        })
+
+        it ('throw Invalid hours for invelid type of parameter', () => {
+            expect(() => companyAdministration.calculateSalary('string'))
+                .to.throw('Invalid hours');
+        })
+        it ('throw invalid hours for negative number', () => {
+            expect(() => companyAdministration.calculateSalary(-5))
+                .to.throw('Invalid hours');
+        })
+        it ('check for missing parameters', () => {
+            expect(() => companyAdministration.calculateSalary())
+            .to.throw("Invalid hours");
+        })
+        it ('check for 0 hours', () => {
+            expect(companyAdministration.calculateSalary(0))
+            .to.equal(0);
+        })
+    })
+
+    describe('firedEmployee', function() {
+        it ('returns correctly employees without the fired one', () => {
+            expect(companyAdministration.firedEmployee(["Petar", "Ivan", "George"], 1))
+            .to.equal("Petar, George");
+        })
+
+        it ('check for incorrect first parameter', () => {
+            expect(() => companyAdministration.firedEmployee("George", 1))
+            .to.throw("Invalid input");
+        })
+
+        it ('check whether second parameter is integer', () => {
+            expect(() => companyAdministration.firedEmployee(["George"], 2.5))
+            .to.throw("Invalid input");
+        })
+        it ('throw error if second parameter is negative', () => {
+            expect(() => companyAdministration.firedEmployee(["George"], -5))
+            .to.throw("Invalid input");
+        })
+        it ('throw error if second parameter gretaer then the employees number', () => {
+            expect(() => companyAdministration.firedEmployee(["George"], 2))
+            .to.throw("Invalid input");
+        })
+        it ('check for missing parameters', () => {
+            expect(() => companyAdministration.firedEmployee())
+            .to.throw("Invalid input");
         })
     })
 
