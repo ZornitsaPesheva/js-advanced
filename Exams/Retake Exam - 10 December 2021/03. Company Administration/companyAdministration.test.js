@@ -18,6 +18,10 @@ describe('Company Administration', function() {
                 .to.equal(`John Smith is not approved for this position.`);
         })
 
+        it("input valid programmer", () => {
+            expect(companyAdministration.hiringEmployee('Peter', 'Programmer', 3)).to.eq('Peter was successfully hired for the position Programmer.');
+        });
+
     })
 
     describe('calculateSalary', function() {
@@ -30,6 +34,7 @@ describe('Company Administration', function() {
             expect(companyAdministration.calculateSalary(200))
                 .to.equal(4000);
         })
+        
 
         it ('throw Invalid hours for invelid type of parameter', () => {
             expect(() => companyAdministration.calculateSalary('string'))
@@ -65,6 +70,15 @@ describe('Company Administration', function() {
             expect(() => companyAdministration.firedEmployee(["George"], 2))
             .to.throw("Invalid input");
         })
+        it("NaN index", () => {
+            expect(() => companyAdministration.firedEmployee(["Petar", "Ivan", "George"], 'string'))
+            .to.throw('Invalid input');
+        });
+
+        it("index outside lower boundary", () => {
+            expect(() => companyAdministration.firedEmployee(["Petar", "Ivan", "George"], -1))
+            .to.throw('Invalid input');
+        });
 
     })
 
