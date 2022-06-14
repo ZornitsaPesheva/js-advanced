@@ -23,7 +23,7 @@ function solve() {
             div.appendChild(createElement('button', 'Save Song', '', 'save-btn', saveSong));
             div.appendChild(createElement('button', 'Save Song', '', 'like-btn', likeSong));
             div.appendChild(createElement('button', 'Delete', '', 'delete-btn', deleteSong));
-
+            [...inputs].forEach(i => i.value = '');
         }
     }
 
@@ -48,7 +48,7 @@ function solve() {
     }
 
     function deleteSong() {
-        
+
     }
 
 }
