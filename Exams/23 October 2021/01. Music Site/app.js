@@ -33,7 +33,7 @@ function solve() {
     function createElement(type, content, value, classNameValue, evListener) {
         const element = document.createElement(type);
         element.textContent = content + value;
-        if (classNameValue != '') {
+        if (classNameValue) {
             element.classList.add(classNameValue);
         }
         if (evListener){
@@ -57,7 +57,7 @@ function solve() {
     }
 
     function deleteSong(e) {
-
+        e.target.parentNode.remove();
     }
 
 }
