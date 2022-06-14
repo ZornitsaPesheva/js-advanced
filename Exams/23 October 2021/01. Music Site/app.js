@@ -45,10 +45,12 @@ function solve() {
         
     }
 
-    function likeSong() {
+    function likeSong(e) {
         let likesNumber = Number(totalLikes.textContent.slice(12)) + 1;
         totalLikes.textContent = 'Total Likes: ' + Number(likesNumber); 
-        console.log(likesNumber);
+        console.log(e.target);
+        e.target.setAttribute('disabled', '');
+
     }
 
     function deleteSong() {
