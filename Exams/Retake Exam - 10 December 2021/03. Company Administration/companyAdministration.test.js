@@ -17,10 +17,7 @@ describe('Company Administration', function() {
             expect(companyAdministration.hiringEmployee('John Smith', 'Programmer', 2))
                 .to.equal(`John Smith is not approved for this position.`);
         })
-        it ('check for missing parameters', () => {
-            expect(() => companyAdministration.hiringEmployee())
-            .to.throw("We are not looking for workers for this position.");
-        })
+
     })
 
     describe('calculateSalary', function() {
@@ -42,14 +39,7 @@ describe('Company Administration', function() {
             expect(() => companyAdministration.calculateSalary(-5))
                 .to.throw('Invalid hours');
         })
-        it ('check for missing parameters', () => {
-            expect(() => companyAdministration.calculateSalary())
-            .to.throw("Invalid hours");
-        })
-        it ('check for 0 hours', () => {
-            expect(companyAdministration.calculateSalary(0))
-            .to.equal(0);
-        })
+
     })
 
     describe('firedEmployee', function() {
@@ -75,10 +65,7 @@ describe('Company Administration', function() {
             expect(() => companyAdministration.firedEmployee(["George"], 2))
             .to.throw("Invalid input");
         })
-        it ('check for missing parameters', () => {
-            expect(() => companyAdministration.firedEmployee())
-            .to.throw("Invalid input");
-        })
+
     })
 
 })
