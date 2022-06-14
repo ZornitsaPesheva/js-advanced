@@ -7,6 +7,8 @@ function solve() {
 
     let inputs = document.querySelectorAll('input');
 
+    let totalLikes = document.querySelector('.likes p')
+
     function addSong(e) {
         e.preventDefault();
         if (![...inputs].some(i => i.value == '')) {
@@ -21,7 +23,7 @@ function solve() {
             div.appendChild(createElement('h2', 'Author: ', inputs[2].value));
             div.appendChild(createElement('h3', 'Date: ', inputs[3].value));
             div.appendChild(createElement('button', 'Save Song', '', 'save-btn', saveSong));
-            div.appendChild(createElement('button', 'Save Song', '', 'like-btn', likeSong));
+            div.appendChild(createElement('button', 'Like Song', '', 'like-btn', likeSong));
             div.appendChild(createElement('button', 'Delete', '', 'delete-btn', deleteSong));
             [...inputs].forEach(i => i.value = '');
         }
@@ -40,14 +42,17 @@ function solve() {
     }
 
     function saveSong() {
-
+        
     }
 
     function likeSong() {
-
+        let likesNumber = Number(totalLikes.textContent.slice(12)) + 1;
+        totalLikes.textContent = 'Total Likes: ' + Number(likesNumber); 
+        console.log(likesNumber);
     }
 
     function deleteSong() {
+        
 
     }
 
