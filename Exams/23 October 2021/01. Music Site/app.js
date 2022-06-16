@@ -23,8 +23,8 @@ function solve() {
             div.appendChild(createElement('h2', 'Name: ', inputs[1].value));
             div.appendChild(createElement('h2', 'Author: ', inputs[2].value));
             div.appendChild(createElement('h3', 'Date: ', inputs[3].value));
-            div.appendChild(createElement('button', 'Save Song', '', 'save-btn', saveSong));
-            div.appendChild(createElement('button', 'Like Song', '', 'like-btn', likeSong));
+            div.appendChild(createElement('button', 'Save song', '', 'save-btn', saveSong));
+            div.appendChild(createElement('button', 'Like song', '', 'like-btn', likeSong));
             div.appendChild(createElement('button', 'Delete', '', 'delete-btn', deleteSong));
             [...inputs].forEach(i => i.value = '');
         }
