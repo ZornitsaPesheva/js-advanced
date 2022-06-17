@@ -34,4 +34,19 @@ class CarDealership {
         this.totalIncome += this.totalIncome += carToSell.price;
         return `${model} was sold for ${carToSell.price.toFixed(2)}$`
     } 
+
+    currentCar() {
+        let result = ['Available cars:'];
+        this.availableCars.forEach(car => {
+            result.push += `---${car.model} - ${car.horsepower} HP - ${car.mileage.toFixed(2)} km - ${car.price.toFixed(2)}$`
+        });
+        if (result.length > 1) {
+            return result.join('\n')
+        }
+        else {
+            return "There are no available cars";
+        }
+
+
+    }
 } 
