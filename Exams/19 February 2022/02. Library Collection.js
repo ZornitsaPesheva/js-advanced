@@ -14,5 +14,16 @@ class LibraryCollection {
         this.books.push({bookName, bookAuthor, payed: false});
         return (`The ${bookName}, with an author ${bookAuthor}, collect.`)
     }
-    
+
+    payBook(bookName) {
+        let book = this.book.find(b => b.bookName == bookName);
+        if (!book) {
+            throw new Error(`${bookName} is not in the collection.`)
+        }
+        if (book.payed) {
+            throw new Error(`${bookName} has already been paid.`)
+        }
+        book.payed = true;
+        return `${bookName} has been successfully paid.`
+    }
 }
