@@ -22,12 +22,12 @@ function solve() {
             let tdBtns = createElement('td');
             trInfo.appendChild(tdBtns);
             tdBtns.appendChild(createElement('button', 'More Info', 'moreBtn', more));
-            tdBtns.appendChild(createElement('button', 'Buy It', 'buyBtn', buy));
+            tdBtns.appendChild(createElement('button', 'Buy it', 'buyBtn', buy));
             let trHide = createElement('tr', null, 'hide');
             trHide.appendChild(createElement('td', 'Year: ' + year));
             let td = document.createElement('td');
+            td.colSpan = 3;
             td.textContent = 'Description: ' + description.value;
-            td.colspan = 3;
             trHide.appendChild(td);
             furnitureList.appendChild(trInfo);
             furnitureList.appendChild(trHide);
