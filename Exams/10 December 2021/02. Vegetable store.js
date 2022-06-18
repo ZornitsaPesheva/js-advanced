@@ -45,4 +45,19 @@ class VgetableStore {
         })
         return `Great choice! You must pay the following amount $${totalPrice.toFixed(2)}.`
     }
+
+    buyingVegetables(type, quantity){
+        let vegetable = this.availableProducts.find(v => v.type == type)
+        if (!vegetable) {
+            throw new Error(`${type} is not available in the store.`)
+        }
+        if (quantity > vegetable.quantity) {
+            vegetable.quantity = 0;
+            return `The entire quantity of the ${type} has been removed.`
+        }
+        else {
+            vegetable.quantity -= quantity;
+            return `Some quantity of the ${type} has been removed.`
+        }
+    }
 }
