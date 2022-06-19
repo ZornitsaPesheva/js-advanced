@@ -1,6 +1,4 @@
 window.addEventListener('load', solve);
-
-
 function solve() {
     let addBtn = document.getElementById('add');
     addBtn.addEventListener('click', addFurniture);
@@ -16,8 +14,8 @@ function solve() {
         let price = Number(inputs[2].value);
         let description = document.querySelector('textarea');
 
-        if(
-            model != '' && description != '' && year > 0 && price > 0) {
+        if( 
+            model != '' && description.value != '' && year > 0 && price > 0) {
             let trInfo = createElement('tr', null, 'info');
             trInfo.appendChild(createElement('td', model));
             trInfo.appendChild(createElement('td', Number(price).toFixed(2)));
