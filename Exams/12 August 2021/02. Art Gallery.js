@@ -1,7 +1,7 @@
 // https://judge.softuni.org/Contests/Practice/DownloadResource/15141
 
 class ArtGallery {
-    constructor(){
+    constructor(creator){
         this.creator = creator,
         this.possibleArticles = { "picture":200,"photo":50,"item":250 },
         this.listOfArticles = [],
@@ -9,11 +9,12 @@ class ArtGallery {
     }
 
     addArticle(articleModel, articleName, quantity) {
-        articleModel = articleModel.toLowerCase();
-        if (!articleModel in this.possibleArticles) {
-            throw new Error("This article model is not included in this gallery!")
+         articleModel = articleModel.toLowerCase();
+        if (!(articleModel in this.possibleArticles)) {
+        // if (!this.possibleArticles[articleModel]) {
+            throw new Error("This article model is not included in this gallery!");
         }
-        let article = this.listOfArticles.find(a => a.articleName = articleName)
+        let article = this.listOfArticles.find(a => a.articleName == articleName)
         if (article) {
             article.quantity += quantity
         }
@@ -40,9 +41,8 @@ class ArtGallery {
 
     buyArticle (articleModel, articleName, guestName) {
         articleModel = articleModel.toLowerCase();
-        let article = this.listOfArticles.findIndex(a => a.articleName == articleName);
-
-        if (!article || !articleModel in this.possibleArticles){
+        let article = this.listOfArticles.find(a => a.articleName == articleName);
+        if (!article || articleModel != article.articleModel){
             throw new Error('This article is not found.');
         }
         if (article.quantity == 0) {
@@ -52,14 +52,38 @@ class ArtGallery {
         if (!guest) {
             return `This guest is not invited.`
         }
-        let points = this.possibleArticles[articleModel];
-        if (guest.points < points) {
+        let articlePoint = this.possibleArticles[articleModel];
+        if (guest.points < articlePoint) {
             return `You need to more points to purchase the article.`
         }
-        guest.points -= points;
-        guest.purchaseArticle ++;
-        article,quantity --;
+        guest.points -= articlePoint;
+        guest.purchaseArticle++;
+        article.quantity--;
         return `${guestName} successfully purchased the article worth ${articlePoint} points.`
 
     }
+
+    showGalleryInfo(criteria) {
+        let result = [];
+        if (criteria == 'article'){
+            result.push('Articles information:');
+            this.listOfArticles.forEach(a => result.push(`${a.articleModel} - ${a.articleName} - ${a.quantity}`))
+        }
+        if (criteria == 'guest') {
+            result.push('Guests information:');
+            this.guests.forEach(g => result.push(`${g.guestName} - ${g.purchaseArticle}`))
+        }
+        return result.join('\n');
+    }
 }
+
+const artGallery = new ArtGallery('Curtis Mayfield');
+artGallery.addArticle('picture', 'Mona Liza', 3);
+artGallery.addArticle('Item', 'Ancient vase', 2);
+artGallery.addArticle('picture', 'Mona Liza', 1);
+artGallery.inviteGuest('John', 'Vip');
+artGallery.inviteGuest('Peter', 'Middle');
+console.log(artGallery.buyArticle('picture', 'Mona Liza', 'John'));
+console.log(artGallery.buyArticle('item', 'Ancient vase', 'Peter'));
+console.log(artGallery.buyArticle('item', 'Mona Liza', 'John'));
+
