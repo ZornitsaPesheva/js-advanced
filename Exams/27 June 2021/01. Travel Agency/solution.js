@@ -2,8 +2,6 @@
 window.addEventListener('load', solution);
 
 function solution() {
-  
-  console.log('TODO: Write the missing functionality!');
 
   const submitBtn = document.getElementById('submitBTN');
   const infoPreview = document.getElementById('infoPreview');
@@ -11,16 +9,12 @@ function solution() {
   const continueBTN = document.getElementById('continueBTN');
   const block = document.getElementById('block');
   const inputs = document.querySelectorAll('input');
-  
   submitBtn.addEventListener('click', submit);
 
   function submit(e) {
+
     let data = [];
-
-    
     if (inputs[0].value != '' && inputs[1].value != '') {
-
-   
       const label = [
         'Full Name: ',
         'Email: ',
@@ -32,7 +26,7 @@ function solution() {
         data.push(inputs[i].value);
         infoPreview.appendChild(createElement('li', label[i], inputs[i].value))
       }
-  
+
       function createElement(type, label, content) {
         const element = document.createElement(type);
         element.textContent = label + content;
@@ -49,7 +43,6 @@ function solution() {
     editBTN.addEventListener('click', function() {
       for (i = 0; i <= 4; i++) {
         inputs[i].value = data[i];
-
       }
       submitBtn.removeAttribute('disabled');
       editBTN.setAttribute('disabled', '');
@@ -61,6 +54,5 @@ function solution() {
       block.innerHTML = '';
       block.appendChild(createElement('h3', '', 'Thank you for your reservation!'))
     })
-    
   }
 }
