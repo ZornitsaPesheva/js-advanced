@@ -22,4 +22,19 @@ class ArtGallery {
         }
         return `Successfully added article ${articleName} with a new quantity- ${quantity}.`
     }
+
+    inviteGuest (guestName, personality) {
+        if (this.guests.some(g => g.guestName == guestName)){
+            throw new Error(`${guestName} has already been invited.`)
+        } 
+        let points = 50;
+        if (personality == 'Vip') {
+            points = 500
+        }
+        else if (personality == 'Middle'){
+            points = 250
+        }
+        this.guests.push({guestName, points, purchaseArticle: 0});
+        return `You have successfully invited ${guestName}!`
+    }
 }
