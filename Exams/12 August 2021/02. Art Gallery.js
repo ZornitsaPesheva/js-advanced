@@ -37,4 +37,29 @@ class ArtGallery {
         this.guests.push({guestName, points, purchaseArticle: 0});
         return `You have successfully invited ${guestName}!`
     }
+
+    buyArticle (articleModel, articleName, guestName) {
+        articleModel = articleModel.toLowerCase();
+        let article = this.listOfArticles.findIndex(a => a.articleName == articleName);
+
+        if (!article || !articleModel in this.possibleArticles){
+            throw new Error('This article is not found.');
+        }
+        if (article.quantity == 0) {
+            return `The ${articleName} is not available.`
+        }
+        let guest = this.guests.find(g => g.guestName == guestName);
+        if (!guest) {
+            return `This guest is not invited.`
+        }
+        let points = this.possibleArticles[articleModel];
+        if (guest.points < points) {
+            return `You need to more points to purchase the article.`
+        }
+        guest.points -= points;
+        guest.purchaseArticle ++;
+        article,quantity --;
+        return `${guestName} successfully purchased the article worth ${articlePoint} points.`
+
+    }
 }
