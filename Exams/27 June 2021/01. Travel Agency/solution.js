@@ -29,7 +29,7 @@ function solution() {
         'Postal Code: '
       ]
       for (i = 0; i <= 4; i++) {
-        data.push[inputs[i].value];
+        data.push(inputs[i].value);
         infoPreview.appendChild(createElement('li', label[i], inputs[i].value))
       }
   
