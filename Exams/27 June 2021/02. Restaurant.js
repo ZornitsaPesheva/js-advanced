@@ -29,13 +29,13 @@ class Restaurant {
     }
 
     addToMenu(meal, neddedProducts, price) {
-        if (!(meal in menu)) {
-            menu[meal] = {neddedProducts, price};
-            if(Object.keys(menu).length == 1) {
+        if (!(meal in this.menu)) {
+            this.menu[meal] = {neddedProducts, price};
+            if(Object.keys(this.menu).length == 1) {
                 return `"Great idea! Now with the ${meal} we have 1 meal in the menu, other ideas?`
             }
             else {
-                return `Great idea! Now with the ${meal} we have ${Object.keys(menu).length} meals in the menu, other ideas?`
+                return `Great idea! Now with the ${meal} we have ${Object.keys(this.menu).length} meals in the menu, other ideas?`
             }
         }
         else {
@@ -45,12 +45,35 @@ class Restaurant {
 
     showTheMenu() {
         let result = [];
-        if (Object.keys(menu).length == 0) {
+        if (Object.keys(this.menu).length == 0) {
             return "Our menu is not ready yet, please come later...";
         }
-        for (const [meal, price] of Object.entries(menu)) {
+        for (const [meal, price] of Object.entries(this.menu)) {
             result.push(`${meal} - $ ${price}`);
         }
         return result.join('\n');
+    }
+
+    makeTheOrder(meal) {
+        if (!(meal in this.menu)) {
+            return `There is not ${meal} yet in our menu, do you want to order something else?`
+        }
+        this.menu[meal].neddedProducts.forEach(p => {
+            let [name, quantity] = p.split(' ');
+            if (!(name in this.stockProducts)) {
+                return `For the time being, we cannot complete your order (${meal}), we are very sorry...`
+            }
+        });
+        this.menu[meal].neddedProducts.forEach(p => {
+            let [name, quantity] = p.split(' ');
+            this.stockProducts[name] -= quantity;
+        });
+
+        return `Your order (${meal}) will be completed in the next 30 minutes and will cost you ${this.menu[meal].price}.`;
+    }
 
 }
+
+let kitchen = new Restaurant(1000);
+console.log(kitchen.addToMenu('frozenYogurt', ['Yogurt 1', 'Honey 1', 'Banana 1', 'Strawberries 10'], 9.99));
+console.log(kitchen.addToMenu('Pizza', ['Flour 0.5', 'Oil 0.2', 'Yeast 0.5', 'Salt 0.1', 'Sugar 0.1', 'Tomato sauce 0.5', 'Pepperoni 1', 'Cheese 1.5'], 15.55));
