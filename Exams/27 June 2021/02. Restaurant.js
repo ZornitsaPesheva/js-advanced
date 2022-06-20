@@ -18,7 +18,7 @@ class Restaurant {
                 else {
                     this.stockProducts[productName] = productQuantity;
                 }
-                this.budget -= productTotalPrice; 
+                this.budgetMoney -= productTotalPrice; 
                 this.history.push(`Successfully loaded ${productQuantity} ${productName}`)
             }
             else {
@@ -74,6 +74,5 @@ class Restaurant {
 
 }
 
-let kitchen = new Restaurant(1000);
-console.log(kitchen.addToMenu('frozenYogurt', ['Yogurt 1', 'Honey 1', 'Banana 1', 'Strawberries 10'], 9.99));
-console.log(kitchen.addToMenu('Pizza', ['Flour 0.5', 'Oil 0.2', 'Yeast 0.5', 'Salt 0.1', 'Sugar 0.1', 'Tomato sauce 0.5', 'Pepperoni 1', 'Cheese 1.5'], 15.55));
+let test = new Restaurant(1000);
+test.loadProducts(['Banana 10 5', 'Banana 20 10', 'Strawberries 50 30', 'Yogurt 10 10', 'Yogurt 500 1500', 'Honey 5 50']);
