@@ -43,4 +43,14 @@ class Restaurant {
         }
     }
 
+    showTheMenu() {
+        let result = [];
+        if (Object.keys(menu).length == 0) {
+            return "Our menu is not ready yet, please come later...";
+        }
+        for (const [meal, price] of Object.entries(menu)) {
+            result.push(`${meal} - $ ${price}`);
+        }
+        return result.join('\n');
+
 }
