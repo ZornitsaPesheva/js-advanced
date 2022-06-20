@@ -2,7 +2,7 @@
 
 class Restaurant {
     constructor(budget) {
-        this.budgetMoney = budget,
+        this.budgetMoney = Number(budget),
         this.menu = {},
         this.stockProducts = {},
         this.history = []; 
@@ -11,6 +11,8 @@ class Restaurant {
     loadProducts(array) {
         array.forEach(p => {
             let [productName, productQuantity, productTotalPrice] = p.split(' ');
+            productQuantity = Number(productQuantity);
+            productTotalPrice = Number(productTotalPrice);
             if (productTotalPrice <= this.budgetMoney) {
                 if (productName in this.stockProducts){
                     this.stockProducts[productName] =+ productQuantity;
