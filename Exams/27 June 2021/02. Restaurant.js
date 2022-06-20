@@ -66,7 +66,7 @@ class Restaurant {
             return `There is not ${meal} yet in our menu, do you want to order something else?`
         }
         for (const product in this.menu[meal].products) {
-            if (!(product in this.stockProducts || this.stockProducts[product] < this.menu[meal].products[product])) {
+            if (!(product in this.stockProducts) || this.stockProducts[product] < this.menu[meal].products[product]) {
                 return `For the time being, we cannot complete your order (${meal}), we are very sorry...`
             }
         };
