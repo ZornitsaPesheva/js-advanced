@@ -7,6 +7,7 @@ function solve(){
    const content = document.getElementById('content');
    const posts = document.querySelectorAll('section')[1];
    const archive = document.querySelector('ol');
+   let archived = [];
 
    createBtn.addEventListener('click', function(e) {
       e.preventDefault();
@@ -54,10 +55,16 @@ function solve(){
       })
 
       archiveBtn.addEventListener('click', function() {
-         let li = document.createElement('li');
-         li.textContent = titleToArchive;
-         archive.appendChild(li);
+
          article.remove();
+         archived.push(titleToArchive);
+         archive.innerHTML = '';
+         archived.sort((a, b) => a.localeCompare(b));
+         for (const a of archived) {
+            let li = document.createElement('li');
+            li.textContent = a;
+            archive.appendChild(li);
+         }
       })
    })
 }
