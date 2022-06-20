@@ -6,6 +6,7 @@ function solve(){
    const [creator, title, category] = document.querySelectorAll('input');
    const content = document.getElementById('content');
    const posts = document.querySelectorAll('section')[1];
+   const archive = document.getElementsByClassName('archive-section')[0];
 
    createBtn.addEventListener('click', function(e) {
       e.preventDefault();
@@ -32,15 +33,28 @@ function solve(){
       let div = document.createElement('div');
       article.appendChild(div);
       let deleteBtn = document.createElement('button');
-      deleteBtn.classList.add('btn delete');
+      deleteBtn.classList.add('btn');
+      deleteBtn.classList.add('delete');
       deleteBtn.textContent = 'Delete';
       div.appendChild(deleteBtn);
       let archiveBtn = document.createElement('button');
-      archiveBtn.classList.add('btn archive');
+      archiveBtn.classList.add('btn');
+      archiveBtn.classList.add('archive');
       archiveBtn.textContent = 'Archive'
       div.appendChild(archiveBtn);
 
-      
+      creator.value = '';
+      title.value = '';
+      category.value = '';
+      content.value = '';
+
+      deleteBtn.addEventListener('click', function() {
+         article.remove();
+      })
+
+      archiveBtn.addEventListener('click', function() {
+         archive.appendChild(article);
+      })
 
    })
 
