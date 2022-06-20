@@ -6,7 +6,7 @@ function solve(){
    const [creator, title, category] = document.querySelectorAll('input');
    const content = document.getElementById('content');
    const posts = document.querySelectorAll('section')[1];
-   const archive = document.getElementsByClassName('archive-section')[0];
+   const archive = document.querySelector('ol');
 
    createBtn.addEventListener('click', function(e) {
       e.preventDefault();
@@ -21,7 +21,7 @@ function solve(){
       let strong1 = document.createElement('strong');
       strong1.textContent = category.value;
       p1.appendChild(strong1);
-      let p2 = document.createElement('p2');
+      let p2 = document.createElement('p');
       p2.textContent = 'Creator:';
       article.appendChild(p2);
       let strong2 = document.createElement('strong');
@@ -31,6 +31,7 @@ function solve(){
       p3.textContent = content.value;
       article.appendChild(p3);
       let div = document.createElement('div');
+      div.classList.add('buttons')
       article.appendChild(div);
       let deleteBtn = document.createElement('button');
       deleteBtn.classList.add('btn');
@@ -42,7 +43,7 @@ function solve(){
       archiveBtn.classList.add('archive');
       archiveBtn.textContent = 'Archive'
       div.appendChild(archiveBtn);
-
+      let titleToArchive = title.value;
       creator.value = '';
       title.value = '';
       category.value = '';
@@ -53,9 +54,10 @@ function solve(){
       })
 
       archiveBtn.addEventListener('click', function() {
-         archive.appendChild(article);
+         let li = document.createElement('li');
+         li.textContent = titleToArchive;
+         archive.appendChild(li);
+         article.remove();
       })
-
    })
-
 }
