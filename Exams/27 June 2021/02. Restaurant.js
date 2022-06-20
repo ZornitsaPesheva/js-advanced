@@ -33,8 +33,15 @@ class Restaurant {
     addToMenu(meal, neededProducts, price) {
         if (meal in this.menu) {
             return `The ${meal} is already in the our menu, try something different.`
-         }
-        this.menu[meal] = {neededProducts, price};
+        }
+        let products = {}
+        neededProducts.forEach(p => {
+           let [productName, productQuantity] = p.split(' ');
+           productQuantity = Number(productQuantity)
+           products[productName] = productQuantity;
+        })
+
+        this.menu[meal] = {products, price};
         if(Object.keys(this.menu).length == 1) {
             return `Great idea! Now with the ${meal} we have 1 meal in the menu, other ideas?`
         }
@@ -58,17 +65,16 @@ class Restaurant {
         if (!(meal in this.menu)) {
             return `There is not ${meal} yet in our menu, do you want to order something else?`
         }
-        this.menu[meal].neededProducts.forEach(p => {
-            let [name, quantity] = p.split(' ');
-            if (!(name in this.stockProducts)) {
+        for (const product in this.menu[meal].products) {
+            if (!(product in this.stockProducts || this.stockProducts[product] < this.menu[meal].products[product])) {
                 return `For the time being, we cannot complete your order (${meal}), we are very sorry...`
             }
-        });
-        this.menu[meal].neededProducts.forEach(p => {
-            let [name, quantity] = p.split(' ');
-            this.stockProducts[name] -= quantity;
+        };
+
+        for (const product in this.menu[meal].products) {
+            this.stockProducts[product] -= this.menu[meal].products[product];
             
-        });
+        };
         this.budgetMoney += this.menu[meal].price;
         return `Your order (${meal}) will be completed in the next 30 minutes and will cost you ${this.menu[meal].price}.`;
     }
@@ -76,5 +82,6 @@ class Restaurant {
 }
 
 let test = new Restaurant(1000);
-let res = test.addToMenu('frozenYogurt', ['Yogurt 1', 'Honey 1', 'Banana 1', 'Strawberries 10'], 9.99);
-console.log(res);
+test.loadProducts(['Yogurt 30 3', 'Honey 50 4', 'Strawberries 20 10', 'Banana 5 1']);
+test.addToMenu('frozenYogurt', ['Yogurt 1', 'Honey 1', 'Banana 1', 'Strawberries 10'], 9.99);
+let res = test.makeTheOrder('frozenYogurt');
