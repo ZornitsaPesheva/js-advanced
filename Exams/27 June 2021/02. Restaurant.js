@@ -28,4 +28,19 @@ class Restaurant {
         return this.history.join('\n');
     }
 
+    addToMenu(meal, neddedProducts, price) {
+        if (!(meal in menu)) {
+            menu[meal] = {neddedProducts, price};
+            if(Object.keys(menu).length == 1) {
+                return `"Great idea! Now with the ${meal} we have 1 meal in the menu, other ideas?`
+            }
+            else {
+                return `Great idea! Now with the ${meal} we have ${Object.keys(menu).length} meals in the menu, other ideas?`
+            }
+        }
+        else {
+            return `The ${meal} is already in the our menu, try something different.`
+        }
+    }
+
 }
