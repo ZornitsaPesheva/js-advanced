@@ -40,7 +40,7 @@ class Restaurant {
            productQuantity = Number(productQuantity)
            products[productName] = productQuantity;
         })
-
+        price = Number(price);
         this.menu[meal] = {products, price};
         if(Object.keys(this.menu).length == 1) {
             return `Great idea! Now with the ${meal} we have 1 meal in the menu, other ideas?`
@@ -55,8 +55,8 @@ class Restaurant {
         if (Object.keys(this.menu).length == 0) {
             return "Our menu is not ready yet, please come later...";
         }
-        for (const [meal, price] of Object.entries(this.menu)) {
-            result.push(`${meal} - $ ${price}`);
+        for (let meal in this.menu) {
+            result.push(`${meal} - $ ${this.menu[meal].price}`);
         }
         return result.join('\n');
     }
