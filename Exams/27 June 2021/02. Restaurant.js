@@ -28,18 +28,16 @@ class Restaurant {
         return this.history.join('\n');
     }
 
-    addToMenu(meal, neddedProducts, price) {
-        if (!(meal in this.menu)) {
-            this.menu[meal] = {neddedProducts, price};
-            if(Object.keys(this.menu).length == 1) {
-                return `"Great idea! Now with the ${meal} we have 1 meal in the menu, other ideas?`
-            }
-            else {
-                return `Great idea! Now with the ${meal} we have ${Object.keys(this.menu).length} meals in the menu, other ideas?`
-            }
+    addToMenu(meal, neededProducts, price) {
+        if (meal in this.menu) {
+            return `The ${meal} is already in the our menu, try something different.`
+         }
+        this.menu[meal] = {neededProducts, price};
+        if(Object.keys(this.menu).length == 1) {
+            return `Great idea! Now with the ${meal} we have 1 meal in the menu, other ideas?`
         }
         else {
-            return `The ${meal} is already in the our menu, try something different.`
+            return `Great idea! Now with the ${meal} we have ${Object.keys(this.menu).length} meals in the menu, other ideas?`
         }
     }
 
@@ -58,21 +56,23 @@ class Restaurant {
         if (!(meal in this.menu)) {
             return `There is not ${meal} yet in our menu, do you want to order something else?`
         }
-        this.menu[meal].neddedProducts.forEach(p => {
+        this.menu[meal].neededProducts.forEach(p => {
             let [name, quantity] = p.split(' ');
             if (!(name in this.stockProducts)) {
                 return `For the time being, we cannot complete your order (${meal}), we are very sorry...`
             }
         });
-        this.menu[meal].neddedProducts.forEach(p => {
+        this.menu[meal].neededProducts.forEach(p => {
             let [name, quantity] = p.split(' ');
             this.stockProducts[name] -= quantity;
+            
         });
-
+        this.budgetMoney += this.menu[meal].price;
         return `Your order (${meal}) will be completed in the next 30 minutes and will cost you ${this.menu[meal].price}.`;
     }
 
 }
 
 let test = new Restaurant(1000);
-test.loadProducts(['Banana 10 5', 'Banana 20 10', 'Strawberries 50 30', 'Yogurt 10 10', 'Yogurt 500 1500', 'Honey 5 50']);
+let res = test.addToMenu('frozenYogurt', ['Yogurt 1', 'Honey 1', 'Banana 1', 'Strawberries 10'], 9.99);
+console.log(res);
