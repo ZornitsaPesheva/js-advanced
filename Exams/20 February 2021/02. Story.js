@@ -12,10 +12,10 @@ class Story {
     get likes() {
         let _likesNumber = this._likes.length;
         if (_likesNumber == 0) {
-            return `${this.title} has 0 _likes`
+            return `${this.title} has 0 likes`
         }
         if (_likesNumber == 1) {
-            return `${this._likes[0]} _likes this story!`
+            return `${this._likes[0]} likes this story!`
         }
         return `${this._likes[0]} and ${_likesNumber - 1} others like this story!`
     }
