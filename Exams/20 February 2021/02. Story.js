@@ -1,5 +1,7 @@
 // https://judge.softuni.org/Contests/Practice/DownloadResource/14581
 
+const { use } = require("chai");
+
 class Story {
     constructor(title, creator) {
         this.title = title;
@@ -26,6 +28,17 @@ class Story {
         if (username == this.creator) {
             throw new Error(`You can't like your own story!`);
         }
+        this.likes.push(username);
         return `${username} liked ${this.title}!`;
     }
+
+    dislike(username) {
+        let index = this.likes.findIndex(u => u == username);
+        if (index == -1) {
+            throw new Error(`You can't dislike this story!`)
+        }
+        this.likes.splice(index, 1)
+        return `${username} disliked ${this.title}`
+    }
+    
 }
