@@ -40,17 +40,16 @@ class Story {
         this._likes.splice(index, 1)
         return `${username} disliked ${this.title}`
     }
-
     comment(username, content, id) {
         let foundComment = this.comments.find(c => c.Id == id);
-
+        let lastCommentId = 0;
         if (id == undefined || !foundComment){
-            let lastCommentId = this.comments.map(c => c.id).max;
-            if (lastCommentId == undefined) {
-                lastCommentId = 0;4
+            if (this.comments.length > 0) {
+                lastCommentId = this.comments[this.comments.length - 1].Id;
+                console.log(lastCommentId);
             }
             let comment = {};
-            comment.Id = Number(lastCommentId) + 1;
+            comment.Id = lastCommentId + 1;
             comment.Username = username;
             comment.Content = content;
             comment.Replies = [];
