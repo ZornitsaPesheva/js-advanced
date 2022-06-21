@@ -10,14 +10,14 @@ class Story {
     }
 
     get likes() {
-        let _likesNumber = this._likes.length;
-        if (_likesNumber == 0) {
+        let likesNumber = this._likes.length;
+        if (likesNumber == 0) {
             return `${this.title} has 0 likes`
         }
-        if (_likesNumber == 1) {
+        if (likesNumber == 1) {
             return `${this._likes[0]} likes this story!`
         }
-        return `${this._likes[0]} and ${_likesNumber - 1} others like this story!`
+        return `${this._likes[0]} and ${likesNumber - 1} others like this story!`
     }
 
 
@@ -42,24 +42,36 @@ class Story {
     }
 
     comment(username, content, id) {
-        let foundId = this.comments.find(c => c.id == id);
-        if (id == undefined || !foundId){
+        let foundComment = this.comments.find(c => c.Id == id);
+
+        if (id == undefined || !foundComment){
             let lastCommentId = this.comments.map(c => c.id).max;
+            if (lastCommentId == undefined) {
+                lastCommentId = 0;4
+            }
             let comment = {};
-            comment.Id = lastCommentId + 1;
+            comment.Id = Number(lastCommentId) + 1;
             comment.Username = username;
             comment.Content = content;
             comment.Replies = [];
-            this.comments.push(lastCommentId+1, username, content);
+            this.comments.push(comment);
             return `${username} commented on ${this.title}`;
         }
         
-        let comment = this.comments.find(c => c.id == id)
+        let commentId = '';
+        if (foundComment.Replies.length > 0) {
+            let lastCommentId = Number(foundComment.Replies[foundComment.Replies.length - 1].Id.split('.')[1]);
+            commentId = foundComment.Id.toString() + '.' + (lastCommentId + 1).toString();
+            
+        }
+        else {
+            commentId = id.toString() + '.' + 1;
+        }
         let reply = {};
         reply.Id = commentId;
         reply.Username = username;
         reply.Content = content;
-        comment.Replies.push(reply);
+        foundComment.Replies.push(reply);
         return `You replied successfully`;
     }
 
@@ -71,20 +83,24 @@ class Story {
             }
         }
         if (sortingType == 'username') {
-            this.comments.sort((c1, c2) => c1.username.localeCompare(c2.username));
+            if ( this.comments.length > 1) {
+                this.comments.sort((c1, c2) => c1.Username.localeCompare(c2.Username));
+            }
             for (let comment of this.comments) {
-                comment.Replies.sort((c1, c2) => c1.localeCompare(c2));
+                if (comment.Replies.length > 1) {
+                    comment.Replies.sort((c1, c2) => c1.Username.localeCompare(c2.Username));
+                }
             }
         }
         let result = [];
         result.push(`Title: ${this.title}`);
         result.push(`Creator: ${this.creator}`);
-        result.push(this._likes());
-        result.push(`Comments`);
+        result.push('Likes: ' + this._likes.length);
+        result.push(`Comments:`);
         for (let c of this.comments) {
-            result.push(`${c.id}. ${c.username}: ${c.content} `);
+            result.push(`-- ${c.Id}. ${c.Username}: ${c.Content}`);
             for (let r of c.Replies) {
-                result.push(`${r.id}. ${r.username}: ${r.content} `);
+                result.push(`--- ${r.Id}. ${r.Username}: ${r.Content}`);
             }
         }
         return result.join('\n');
@@ -95,3 +111,16 @@ class Story {
 
 let art = new Story("My Story", "Anny");
 art.like("John");
+console.log(art.likes);
+art.dislike("John");
+console.log(art.likes);
+console.log(art.comment("Sammy", "Some Content"));
+console.log(art.comment("Ammy", "New Content"));
+console.log(art.comment("Zane", "Reply", 1));
+art.comment("Jessy", "Nice :)");
+console.log(art.comment("SAmmy", "Reply@", 1));
+console.log()
+console.log(art.toString('username'));
+console.log()
+art.like("Zane");
+console.log(art.toString('desc'));
