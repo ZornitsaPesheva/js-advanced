@@ -6,38 +6,38 @@ class Story {
         this.title = title;
         this.creator = creator;
         this.comments = [];
-        this.likes = [];
+        this._likes = [];
     }
 
     get likes() {
-        let likesNumber = this.likes.length;
-        if (likesNumber == 0) {
-            return `${this.title} has 0 likes`
+        let _likesNumber = this._likes.length;
+        if (_likesNumber == 0) {
+            return `${this.title} has 0 _likes`
         }
-        if (likesNumber == 1) {
-            return `${this.likes[0]} likes this story!`
+        if (_likesNumber == 1) {
+            return `${this._likes[0]} _likes this story!`
         }
-        return `${this.likes[0]} and ${likesNumber - 1} others like this story!`
+        return `${this._likes[0]} and ${_likesNumber - 1} others like this story!`
     }
 
 
     like(username) {
-        if (this.likes.find(u => u == username)){
+        if (this._likes.find(u => u == username)){
             throw new Error("You can't like the same story twice!")
         }
         if (username == this.creator) {
             throw new Error(`You can't like your own story!`);
         }
-        this.likes.push(username);
+        this._likes.push(username);
         return `${username} liked ${this.title}!`;
     }
 
     dislike(username) {
-        let index = this.likes.findIndex(u => u == username);
+        let index = this._likes.findIndex(u => u == username);
         if (index == -1) {
             throw new Error(`You can't dislike this story!`)
         }
-        this.likes.splice(index, 1)
+        this._likes.splice(index, 1)
         return `${username} disliked ${this.title}`
     }
 
@@ -79,7 +79,7 @@ class Story {
         let result = [];
         result.push(`Title: ${this.title}`);
         result.push(`Creator: ${this.creator}`);
-        result.push(this.likes());
+        result.push(this._likes());
         result.push(`Comments`);
         for (let c of this.comments) {
             result.push(`${c.id}. ${c.username}: ${c.content} `);
