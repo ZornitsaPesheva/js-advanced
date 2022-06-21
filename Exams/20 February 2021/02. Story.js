@@ -5,7 +5,7 @@ class Story {
     constructor(title, creator) {
         this.title = title;
         this.creator = creator;
-        this.comments = [];
+        this._comments = [];
         this._likes = [];
     }
 
@@ -41,11 +41,11 @@ class Story {
         return `${username} disliked ${this.title}`
     }
     comment(username, content, id) {
-        let foundComment = this.comments.find(c => c.Id == id);
+        let foundComment = this._comments.find(c => c.Id == id);
         let lastCommentId = 0;
         if (id == undefined || !foundComment){
-            if (this.comments.length > 0) {
-                lastCommentId = this.comments[this.comments.length - 1].Id;
+            if (this._comments.length > 0) {
+                lastCommentId = this._comments[this._comments.length - 1].Id;
                 console.log(lastCommentId);
             }
             let comment = {};
@@ -53,7 +53,7 @@ class Story {
             comment.Username = username;
             comment.Content = content;
             comment.Replies = [];
-            this.comments.push(comment);
+            this._comments.push(comment);
             return `${username} commented on ${this.title}`;
         }
         
@@ -76,16 +76,16 @@ class Story {
 
     toString(sortingType) {
         if (sortingType == 'desc'){
-            this.comments.reverse();
-            for (let comment of this.comments) {
+            this._comments.reverse();
+            for (let comment of this._comments) {
                 comment.Replies.reverse();
             }
         }
         if (sortingType == 'username') {
-            if ( this.comments.length > 1) {
-                this.comments.sort((c1, c2) => c1.Username.localeCompare(c2.Username));
+            if ( this._comments.length > 1) {
+                this._comments.sort((c1, c2) => c1.Username.localeCompare(c2.Username));
             }
-            for (let comment of this.comments) {
+            for (let comment of this._comments) {
                 if (comment.Replies.length > 1) {
                     comment.Replies.sort((c1, c2) => c1.Username.localeCompare(c2.Username));
                 }
@@ -96,7 +96,7 @@ class Story {
         result.push(`Creator: ${this.creator}`);
         result.push('Likes: ' + this._likes.length);
         result.push(`Comments:`);
-        for (let c of this.comments) {
+        for (let c of this._comments) {
             result.push(`-- ${c.Id}. ${c.Username}: ${c.Content}`);
             for (let r of c.Replies) {
                 result.push(`--- ${r.Id}. ${r.Username}: ${r.Content}`);
