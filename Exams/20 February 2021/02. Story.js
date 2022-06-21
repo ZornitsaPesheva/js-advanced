@@ -2,11 +2,16 @@
 
 const { use } = require("chai");
 
+
 class Story {
     constructor(title, creator) {
         this.title = title;
         this.creator = creator;
         this.comments = [];
+        this.likes = [];
+    }
+
+    set likes([]) {
         this.likes = [];
     }
 
@@ -20,6 +25,7 @@ class Story {
         }
         return `${likes[0]} and ${likesNumber - 1} others like this story!`
     }
+
 
     like(username) {
         if (this.likes.find(u => u == username)){
@@ -64,9 +70,31 @@ class Story {
     }
 
     toString(sortingType) {
-        if (sortingType == 'acc'){
-            
+        if (sortingType == 'desc'){
+            this.comments.reverse();
+            for (let comment of this.comments) {
+                comment.Replies.reverse();
+            }
         }
+        if (sortingType == 'username') {
+            this.comments.sort((c1, c2) => c1.username.localeCompare(c2.username));
+            for (let comment of this.comments) {
+                comment.Replies.sort((c1, c2) => c1.localeCompare(c2));
+            }
+        }
+        let result = [];
+        result.push(`Title: ${this.title}`);
+        result.push(`Creator: ${this.creator}`);
+        result.push(this.likes());
+        result.push(`Comments`);
+        for (let c of this.comments) {
+            result.push(`${c.id}. ${c.username}: ${c.content} `);
+            for (let r of c.Replies) {
+                result.push(`${r.id}. ${r.username}: ${r.content} `);
+            }
+        }
+        return result.join('\n');
+
     }
 
 }
