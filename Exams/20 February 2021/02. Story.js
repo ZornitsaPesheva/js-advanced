@@ -44,14 +44,14 @@ class Story {
     comment(username, content, id) {
         let foundId = this.comments.find(c => c.id == id);
         if (id == undefined || !foundId){
-            let lastCommentId = this.comments.map(c => c.id).max();
+            let lastCommentId = this.comments.map(c => c.id).max;
             let comment = {};
             comment.Id = lastCommentId + 1;
             comment.Username = username;
             comment.Content = content;
             comment.Replies = [];
             this.comments.push(lastCommentId+1, username, content);
-            return `${username} commented on ${title}`;
+            return `${username} commented on ${this.title}`;
         }
         
         let comment = this.comments.find(c => c.id == id)
