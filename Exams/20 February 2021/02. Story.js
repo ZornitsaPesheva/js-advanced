@@ -60,6 +60,12 @@ class Story {
         reply.Username = username;
         reply.Content = content;
         comment.Replies.push(reply);
+        return `You replied successfully`;
+    }
+
+    toString(sortingType) {
+        if (sortingType == 'acc'){
+            
         }
     }
 
