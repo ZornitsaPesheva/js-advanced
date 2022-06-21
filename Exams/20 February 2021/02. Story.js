@@ -1,7 +1,5 @@
 // https://judge.softuni.org/Contests/Practice/DownloadResource/14581
 
-const { use } = require("chai");
-
 
 class Story {
     constructor(title, creator) {
@@ -17,9 +15,9 @@ class Story {
             return `${this.title} has 0 likes`
         }
         if (likesNumber == 1) {
-            return `${likes[0]} likes this story!`
+            return `${this.likes[0]} likes this story!`
         }
-        return `${likes[0]} and ${likesNumber - 1} others like this story!`
+        return `${this.likes[0]} and ${likesNumber - 1} others like this story!`
     }
 
 
@@ -94,3 +92,6 @@ class Story {
     }
 
 }
+
+let art = new Story("My Story", "Anny");
+art.like("John");
