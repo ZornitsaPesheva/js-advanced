@@ -11,10 +11,6 @@ class Story {
         this.likes = [];
     }
 
-    set likes([]) {
-        this.likes = [];
-    }
-
     get likes() {
         let likesNumber = this.likes.length;
         if (likesNumber == 0) {
