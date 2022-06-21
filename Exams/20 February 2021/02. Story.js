@@ -19,4 +19,13 @@ class Story {
         return `${likes[0]} and ${likesNumber - 1} others like this story!`
     }
 
+    like(username) {
+        if (this.likes.find(u => u == username)){
+            throw new Error("You can't like the same story twice!")
+        }
+        if (username == this.creator) {
+            throw new Error(`You can't like your own story!`);
+        }
+        return `${username} liked ${this.title}!`;
+    }
 }
