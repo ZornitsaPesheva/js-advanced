@@ -37,4 +37,6 @@ let dealership = {
     }
 }
 
+console.log(dealership.euroCategory(5));
+
 module.exports = { dealership }
