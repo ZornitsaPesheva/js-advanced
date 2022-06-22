@@ -21,7 +21,7 @@ class ChristmasDinner {
         }
         this.products.push(type);
         this.budget -= price;
-        return `"You have successfully bought ${type}!`
+        return `You have successfully bought ${type}!`
     }
     
     recipes({recipeName, productsList}) {
