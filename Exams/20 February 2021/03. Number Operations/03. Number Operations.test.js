@@ -21,5 +21,18 @@ describe('numberOperations', function() {
             expect(numberOperations.numberChecker(120)).to.equal('The number is greater or equal to 100!');
         })
     })
-
+    describe('sumArrays', function() {
+        it('retuns correct sumArrays', () => {
+            expect(numberOperations.sumArrays([1, 2, 3], [1, 2, 3]))
+                .to.deep.equal([2, 4, 6]);
+        })
+        it('retuns correct sumArrays', () => {
+            expect(numberOperations.sumArrays([1, 2], [1, 2, 3]))
+                .to.deep.equal([2, 4, 3]);
+        })
+        it('retuns correct sumArrays', () => {
+            expect(numberOperations.sumArrays([1, 2, 3], [1, 2]))
+                .to.deep.equal([2, 4, 3]);
+        })
+    })
 })
