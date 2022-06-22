@@ -19,14 +19,14 @@ class ChristmasDinner {
         if (this._budget < price){
             throw new Error("Not enough money to buy this product");
         }
-        this.products.push([name, price]);
+        this.products.push({type, price});
         this._budget -= price;
         return `"You have successfully bought ${type}!`
     }
     
     recipes({recipeName, productsList}) {
         for (let p of productsList) {
-            if (!this.products.includes(p)){
+            if (!this.products.find(pr => pr.type == p)){
                 throw new Error("We do not have this product");
             }
         }
@@ -34,7 +34,25 @@ class ChristmasDinner {
         return `${recipeName} has been successfully cooked!`;
     }
 
-    
+    inviteGuests(name, dish) {
+        if (!this.dishes.find(d => d.recipeName == dish)){
+            throw new Error('We do not have this dish');
+        }
+        if (name in this.guests) {
+            throw new Error("This guest has already been invited");
+        }
+        this.guests[name] = dish;
+        return `You have successfully invited ${name}!`
+    }
+
+    showAttendance() {
+        let result = [];
+        for (let name in this.guests) {
+            let dish = this.guests[name];
+            let products = this.dishes.find(d => d.recipeName == dish)[0].productsList;
+            result.push(`${name} will eat ${dish}, which consists of ${products}`)
+        } 
+    }
 }
 
 let dinner = new ChristmasDinner(-300);
