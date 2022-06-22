@@ -4,15 +4,14 @@ class LibraryCollection {
     constructor(capacity) {
         this.capacity = capacity;
         this.books = [];
-        this.emptySlots = capacity;
     }
 
     addBook(bookName, bookAuthor) {
-        if (this.emptySlots == 0) {
+        if (this.capacity == 0) {
             throw new Error('Not enough space in the collection.')
         }
         this.books.push({bookName, bookAuthor, payed: false});
-        this.emptySlots -= 1;
+        this.capacity -= 1;
         return (`The ${bookName}, with an author ${bookAuthor}, collect.`);
     }
 
@@ -38,14 +37,14 @@ class LibraryCollection {
             throw new Error(`${bookName} need to be paid before removing from the collection.`)
         }
         this.books.splice(bookIndex, 1);
-        this.emptySlots += 1;
+        this.capacity += 1;
         return `${bookName} remove from the collection.`
     }
 
     getStatistics(bookAuthor) {
         let result = [];
         if (!bookAuthor) {
-            result.push(`The book collection has ${ this.emptySlots } empty spots left.`);
+            result.push(`The book collection has ${ this.capacity } empty spots left.`);
             this.books.sort((a, b) => a.bookName.localeCompare(b.bookName))
                 .forEach(book => { 
                     if (book.payed == true) {
