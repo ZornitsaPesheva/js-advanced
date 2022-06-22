@@ -27,11 +27,13 @@ function solution() {
                 sentGifts.appendChild(gift);
                 discardBtn.remove();
                 sendBtn.remove();
+                sortedList.splice(sortedList.findIndex(sg => sg == g), 1);
             });
             discardBtn.addEventListener('click', function() {
                 discardedGifts.appendChild(gift);
                 sendBtn.remove();
                 discardBtn.remove();
+                sortedList.splice(sortedList.findIndex(sg => sg == g), 1);
             })
         }
         name.value = '';
