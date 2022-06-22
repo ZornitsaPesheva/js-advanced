@@ -23,6 +23,18 @@ class ChristmasDinner {
         this._budget -= price;
         return `"You have successfully bought ${type}!`
     }
+    
+    recipes({recipeName, productsList}) {
+        for (let p of productsList) {
+            if (!this.products.includes(p)){
+                throw new Error("We do not have this product");
+            }
+        }
+        this.dishes.push({recipeName, productsList});
+        return `${recipeName} has been successfully cooked!`;
+    }
+
+    
 }
 
 let dinner = new ChristmasDinner(-300);
