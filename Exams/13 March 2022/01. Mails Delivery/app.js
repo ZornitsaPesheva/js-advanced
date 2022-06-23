@@ -1,102 +1,87 @@
 function solve() {
-    let recipientInput = document.getElementById('recipientName');
-    let titletInput = document.getElementById('title');
-    let messagetInput = document.getElementById('message');
+    let [recipientNameInput, titleInput] = document.querySelectorAll('input');
+    let messageArea = document.querySelector('textarea');
 
-    let addBtn = document.getElementById('add');
-    let resetBtn = document.getElementById('reset');
+    const [addBtn, resetBtn] = document.querySelectorAll('button');
+    const [list, sentList, deleteList] = document.querySelectorAll('ul');
 
-    let list = document.getElementById('list');
-    let sentList = document.getElementsByClassName('sent-list')[0];
-    let deleteList = document.getElementsByClassName('delete-list')[0];
 
-    addBtn.addEventListener('click', addFunction);
-    resetBtn.addEventListener('click', resetFunction);
-
-    function createElement(type, content, className) {
-        const element = document.createElement(type);
-        element.textContent = content;
-        if (className) {
-            element.className = className;
-        }
-        return element;
-      }
-
-    function addFunction(e) {
-        let recipient = recipientInput.value;
-        let title = titletInput.value;
-        let message = messagetInput.value;
-    
+    addBtn.addEventListener('click', function(e) {
         e.preventDefault();
-        if (recipient != '' && title != '' && message != '') {
-            let li = document.createElement('li');
+        let recipientName = recipientNameInput.value;
+        let title = titleInput.value;
+        let message = messageArea.value;
+        if (recipientName != '' && title != '' && message != '') {
+            let li = createElement('li');
             list.appendChild(li);
-            li.appendChild(createElement('h4', 'Title: ' + title));
-            li.appendChild(createElement('h4', 'Recipient Name: ' + recipient));
-            li.appendChild(createElement('span', message));
-            let div = createElement('div');
-            div.id = 'list-action';
+            let h4title = createElement('h4', 'Title: ' + title);
+            li.appendChild(h4title);
+            let h4RecipientName = createElement('h4', 'Recipient Name: ' + recipientName);
+            li.appendChild(h4RecipientName);
+            let span = createElement('span', message);
+            li.appendChild(span);
+            let div = document.createElement('div');
             li.appendChild(div);
-            let sendBtn = createElement('button', 'Send');
+            let sendBtn = createElement('button', 'Send', 'send');
             sendBtn.type = 'submit';
-            sendBtn.id = 'send';
-            sendBtn.addEventListener('click', send);
+            sendBtn.addEventListener('click', function() {
+                let liSent = createElement('li');
+                sentList.appendChild(liSent);
+                let spanTo = createElement('span', 'To: ' + recipientName);
+                liSent.appendChild(spanTo);
+                let spanTitle = createElement('span', 'Title: ' + title);
+                liSent.appendChild(spanTitle);
+                let div = document.createElement('div');
+                div.classList.add('btn');
+                let btn = createElement('button', 'Delete');
+                btn.type = 'submit';
+                btn.classList.add('delete');
+                btn.addEventListener('click', function() {
+                    let liDelete = document.createElement('li');
+                    deleteList.appendChild(liDelete);
+                    liDelete.appendChild(createElement('span', 'To: ' + recipientName));
+                    liDelete.appendChild(createElement('span', 'Title: ' + title));
+                    liSent.remove();
+                })
+                div.appendChild(btn);
+                liSent.appendChild(div);
+                console.log(li);
+                li.remove();
+            });
             div.appendChild(sendBtn);
-            let deletedBtn = createElement('button', 'Delete');
-            deletedBtn.type = 'submit';
-            deletedBtn.id = 'delete';
-            deletedBtn.addEventListener('click', deleteEmailfromList);
-            div.appendChild(deletedBtn);
-            recipientInput.value = '';
-            titletInput.value = '';
-            messagetInput.value = '';
+            let deleteBtn = createElement('button', 'Delete', 'delete');
+            deleteBtn.addEventListener('click', function() {
+                let liDelete = document.createElement('li');
+                deleteList.appendChild(liDelete);
+                liDelete.appendChild(createElement('span', 'To: ' + recipientName));
+                liDelete.appendChild(createElement('span', 'Title: ' + title));
+                li.remove();
+            })
+            div.appendChild(deleteBtn);
+            deleteBtn.type = 'submit';
+
+            recipientNameInput.value = '';
+            titleInput.value = '';
+            messageArea.value = '';
+
+            function createElement(type, content, id) {
+                const element = document.createElement(type);
+                element.textContent = content;
+                if (id) {
+                    element.id = id;
+                }
+                return element;
+            }
+
         }
-    }
+    })
 
-    function resetFunction(e) {
+    resetBtn.addEventListener('click', function(e) {
         e.preventDefault();
-        recipientInput.value = '';
-        titletInput.value = '';
-        messagetInput.value = '';
-    }
-
-    function send(e) {
-        e.preventDefault();
-        let targetLi = e.target.parentNode.parentNode;
-        let data = targetLi.querySelectorAll('h4');
-        let li = document.createElement('li');
-        list.appendChild(li);
-        li.appendChild(createElement('span', 'To: ' + (data[1].textContent).slice(16)));
-        li.appendChild(createElement('span', 'Title: ' + (data[0].textContent).slice(7)));
-        let div = createElement('div');
-        div.className = "btn";
-        li.appendChild(div);
-        let btn = createElement('button', 'Delete', 'delete');
-        btn.type = "submit";
-        btn.addEventListener('click', deleteEmailfromSent);
-        div.appendChild(btn);
-        sentList.appendChild(li);
-        targetLi.remove();
-    }
-
-    function deleteEmailfromList(e) {
-        e.preventDefault();
-        let fromLi = e.target.parentNode.parentNode;
-        let li = document.createElement('li');
-        deleteList.appendChild(li);
-        li.appendChild(createElement('span', 'To: ' + fromLi.children[1].textContent.slice(16)));
-        li.appendChild(createElement('span', 'Title: ' + fromLi.children[0].textContent.slice(7)));
-        e.target.parentNode.parentNode.remove();
-        
-    }
-    
-    function deleteEmailfromSent(e) {
-        e.preventDefault();
-        let fromLi = e.target.parentNode.parentNode;
-       // e.target.parentNode.parentNode.remove();
-       fromLi.children[2].remove();
-        deleteList.appendChild(fromLi);
-
-    }
+        recipientNameInput.value = '';
+        titleInput.value = '';
+        messageArea.value = '';
+    })
 }
+
 solve()
