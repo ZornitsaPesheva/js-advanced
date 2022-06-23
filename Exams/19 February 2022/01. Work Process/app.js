@@ -1,3 +1,5 @@
+// https://judge.softuni.org/Contests/Practice/DownloadResource/20672
+
 function solve() {
     let hireWorkerBtn = document.getElementById('add-worker');
     hireWorkerBtn.addEventListener('click', hireWprkerFunc);
@@ -24,43 +26,33 @@ function solve() {
             let btn1 = document.createElement('button');
             btn1.classList.add('fired');
             btn1.textContent = 'Fired';
-            btn1.addEventListener('click', fireFunc);
+            btn1.addEventListener('click', function() {
+                let cells = tr.querySelectorAll('td');
+                budget.textContent = (Number(budget.textContent) - cells[5].textContent)
+                .toFixed(2);
+                tr.remove();
+            });
             let btn2 = document.createElement('button');
             btn2.classList.add('edit');
             btn2.textContent = 'Edit';
-            btn2.addEventListener('click', editFunc);
-            td.appendChild(btn1);
-            td.appendChild(btn2);
-            tr.appendChild(td);
-            budget.textContent = (Number(budget.textContent) + Number(salary))
-                .toFixed(2);
-            
-        } 
-
-        function editFunc(e) {
-            e.preventDefault();
-                let row = e.target.parentNode.parentNode;
-                let cells = row.querySelectorAll('td');
+            btn2.addEventListener('click', function() {
+                let cells = tr.querySelectorAll('td');
                 let j = 0;
                 for (i = 0; i < cells.length - 1; i++ ){
                     console.log(inputs[j]);
                     inputs[j].value = cells[i].textContent;
                     j++;
-                
                 }
                 budget.textContent = 
                     (Number(budget.textContent) - cells[5].textContent).toFixed(2);
-                row.remove();
-        }
-
-        function fireFunc(e) {
-            e.preventDefault();
-            let row = e.target.parentNode.parentNode;
-            let cells = row.querySelectorAll('td');
-            budget.textContent = (Number(budget.textContent) - cells[5].textContent)
-            .toFixed(2);
-            row.remove();
-        }
+                tr.remove();
+            });
+            td.appendChild(btn1);
+            td.appendChild(btn2);
+            tr.appendChild(td);
+            budget.textContent = (Number(budget.textContent) + Number(salary))
+                .toFixed(2);
+        } 
     }
 }
 solve()
