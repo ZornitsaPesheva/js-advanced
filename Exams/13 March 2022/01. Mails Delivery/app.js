@@ -37,10 +37,7 @@ function solve() {
                 btn.type = 'submit';
                 btn.classList.add('delete');
                 btn.addEventListener('click', function() {
-                    let liDelete = document.createElement('li');
-                    deleteList.appendChild(liDelete);
-                    liDelete.appendChild(createElement('span', 'To: ' + recipientName));
-                    liDelete.appendChild(createElement('span', 'Title: ' + title));
+                    addToDeleted();
                     liSent.remove();
                 })
                 div.appendChild(btn);
@@ -51,18 +48,19 @@ function solve() {
             div.appendChild(sendBtn);
             let deleteBtn = createElement('button', 'Delete', 'delete');
             deleteBtn.addEventListener('click', function() {
-                let liDelete = document.createElement('li');
-                deleteList.appendChild(liDelete);
-                liDelete.appendChild(createElement('span', 'To: ' + recipientName));
-                liDelete.appendChild(createElement('span', 'Title: ' + title));
+                addToDeleted();
                 li.remove();
             })
             div.appendChild(deleteBtn);
             deleteBtn.type = 'submit';
-
-            recipientNameInput.value = '';
-            titleInput.value = '';
-            messageArea.value = '';
+            clearValues();
+            
+            function addToDeleted(){
+                let liDelete = document.createElement('li');
+                deleteList.appendChild(liDelete);
+                liDelete.appendChild(createElement('span', 'To: ' + recipientName));
+                liDelete.appendChild(createElement('span', 'Title: ' + title));
+            }
 
             function createElement(type, content, id) {
                 const element = document.createElement(type);
@@ -77,11 +75,15 @@ function solve() {
     })
 
     resetBtn.addEventListener('click', function(e) {
+        clearValues();
         e.preventDefault();
+    })
+    
+    function clearValues() {
         recipientNameInput.value = '';
         titleInput.value = '';
         messageArea.value = '';
-    })
+    }
 }
 
 solve()
