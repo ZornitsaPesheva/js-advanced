@@ -16,29 +16,19 @@ function solve() {
       let postTitle = title.value;
       let postCategory = category.value;
       let postText = text.value
-      let li = document.createElement('li');
-      li.classList.add('rpost');
+      let li = createElement('li', '', 'rpost');
       reviewList.appendChild(li);
       let article = document.createElement('article');
       li.appendChild(article);
-      let h4 = document.createElement('h4');
-      h4.textContent = postTitle;
+      let h4 = createElement('h4', postTitle)
       article.appendChild(h4);
-      let p1 = document.createElement('p');
-      p1.textContent = 'Category: ' + postCategory;
+      let p1 = createElement('p', 'Category: ' + postCategory);
       article.appendChild(p1);
-      let p2 = document.createElement('p');
-      p2.textContent = 'Content: ' + postText;
+      let p2 = createElement('p', 'Content: ' + postText)
       article.appendChild(p2);
-      let editBtn = document.createElement('button');
-      editBtn.classList.add('action-btn');
-      editBtn.classList.add('edit');
-      editBtn.textContent = 'Edit';
+      let editBtn = createElement('button', 'Edit', 'action-btn edit')
       li.appendChild(editBtn);
-      let approveBtn = document.createElement('button');
-      approveBtn.classList.add('action-btn');
-      approveBtn.classList.add('approve');
-      approveBtn.textContent = 'Approve';
+      let approveBtn = createElement('button', 'Approve', 'action-btn approve')
       li.appendChild(approveBtn);
       title.value = '';
       category.value = '';
@@ -56,7 +46,16 @@ function solve() {
       })
       clearBtn.addEventListener("click", function() {
         publishedList.innerHTML = '';
-      })
+      })      
+
+      function createElement(type, content, className) {
+        const element = document.createElement(type);
+        element.textContent = content;
+        if (className) {
+            element.className = className;
+        }
+        return element;
+      }
     }
   }
 }
