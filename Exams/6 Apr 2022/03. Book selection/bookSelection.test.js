@@ -22,8 +22,8 @@ describe('Book Selection', function() {
 
     describe('suitableTitles', function() {
         it ('Sutable books returns array', () => {
-            expect(bookSelection.suitableTitles([
-                { title: "The Da Vinci Code", genre: "Thriller" }], 'Thriller')).to.deep.equal(['The Da Vinci Code']);
+            expect(bookSelection.suitableTitles(
+                [{ title: "The Da Vinci Code", genre: "Thriller" }], 'Thriller')).to.deep.equal(['The Da Vinci Code']);
         })
         it ('Sutable books returns array', () => {
             expect(bookSelection.suitableTitles([], 'Thriller')).to.deep.equal([]);
