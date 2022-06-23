@@ -21,10 +21,22 @@ class Bank {
         if (!customer){
             throw new Error('We have no customer with this ID!');
         }
-        if (!customer[totalMoney]) {
-            customer[totalMoney] = 0
+        if (!customer.totalMoney) {
+            customer.totalMoney = 0
         }
-        customer[totalMoney] += amount;
-        return `${customer[totalMoney]}$`
+        customer.totalMoney += amount;
+        return `${customer.totalMoney}$`
+    }
+
+    withdrawMoney(personalId, amount) {
+        let customer = this.allCustomers.find(c => c.personalId == personalId);
+        if (!customer){
+            throw new Error('We have no customer with this ID!');
+        }
+        if (customer.totalMoney < amount) {
+            throw new Error(`${customer.firstName} ${customer.lastName} does not have enough money to withdraw that amount!`)
+        }
+        customer.totalMoney -= amount;
+        return `${customer.totalMoney}$`
     }
 }
